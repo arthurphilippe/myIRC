@@ -47,7 +47,6 @@ static int body(server_t *serv)
 		return (SERV_RET_ERR);
 	}
 	read_on_set_fd(serv, &fd_read);
-	printf("waiting...\n");
 	return (SERV_RET_OK);
 }
 
