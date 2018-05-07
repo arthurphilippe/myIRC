@@ -8,7 +8,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include "server.h"
+#include "server/server.h"
 
 static int port_bind(int sock, int port)
 {
@@ -33,5 +33,7 @@ int server_port_listen(server_t *serv, int port)
 	}
 	hdl->h_type = H_PORT;
 	hdl->h_fd = sock;
+	hdl->h_read = server_port_read;
+	hdl->h_write = NULL;
 	return (SERV_RET_OK);
 }

@@ -7,8 +7,12 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
+#include <stdio.h>
+#include "server/server.h"
 
+/*
+** Creates an empty server
+*/
 server_t *server_create()
 {
 	server_t *serv = malloc(sizeof(server_t));
@@ -19,12 +23,16 @@ server_t *server_create()
 	return (serv);
 }
 
+/*
+** Creates a server with an active listening port
+*/
 server_t *server_create_port(int port)
 {
 	server_t *serv = server_create();
 
-	if (!serv)
+	if (!serv || server_port_listen(serv, port) != SERV_RET_OK) {
+		perror("server_port_listen");
 		return (NULL);
-	server_port_listen(serv, port);
+	}
 	return (serv);
 }

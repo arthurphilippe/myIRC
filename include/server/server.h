@@ -39,7 +39,17 @@ typedef struct		s_server {
 /*
 ** Prototypes
 */
-handle_t *server_handle_get_free(server_t *serv);
-int server_port_listen(server_t *serv, int port);
+server_t	*server_create();
+server_t	*server_create_port(int port);
+void		server_loop(server_t *serv);
+
+
+handle_t	*server_handle_get_free(server_t *serv);
+handle_t	*server_handle_get_from_fd(server_t *serv, int fd);
+int		server_port_listen(server_t *serv, int port);
+void		server_port_read(server_t *serv, handle_t *port_hdl);
+
+void		server_client_read(server_t *serv, handle_t *client_hdl);
+
 
 #endif /* !SERVER_H_ */
