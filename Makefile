@@ -13,7 +13,9 @@ NAME		=	server
 
 MAIN		=	src/main.c
 
-SRCS		=
+SRCS		=	src/server/create.c		\
+			src/server/port_listen.c	\
+			src/server/handle_get.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
