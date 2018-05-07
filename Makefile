@@ -15,9 +15,14 @@ NAME		=	server
 
 MAIN		=	src/main.c
 
+SRCS		=	src/server/create.c		\
+			src/server/port_listen.c	\
+			src/server/port_read.c		\
+			src/server/handle_get.c		\
+			src/server/loop.c		\
+			src/server/client/read.c	\
+	
 MAIN_CLIENT	=	src/client/main.c
-
-SRCS		=
 
 SRCS_CLIENT	=	src/client/set_server_info.c \
 			src/client/error.c		\
@@ -41,7 +46,7 @@ OBJS_TEST	=	$(SRCS_TEST:.c=.o)
 
 CFLAGS		=	-W -Wextra -Wall -Iinclude/
 
-LDFLAGS		=	-L./ -lpthread -lm -lncurses
+LDFLAGS		=
 
 %.o: %.c
 	@printf "[\033[0;36mcompiling\033[0m]% 39s\r" $< | tr " " "."

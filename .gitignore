@@ -1,7 +1,10 @@
+server
+!src/server
+!include/server
 *.o
 *~
 *.gch
 *.out
 vgcore*
 *.log
-server
+
