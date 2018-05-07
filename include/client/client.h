@@ -13,16 +13,26 @@
 
 	#define RET_ERR (-1)
 
+typedef enum e_state {
+	NOT_CONNECTED,
+	CONNECTED,
+}		state_t;
+
 typedef struct	s_client {
 	char	serv_ip[1024];
 	int	port;
+	state_t state;
 }		client_t;
 
 /*
 **	Client IRC Core Function
 */
-client_t	*client_set_server_info(int ac, char **av);
-int		client_irc(client_t *);
+client_t	*client_set_server_info(char *);
+int		client_irc();
+char		*extract_command(char *str);
+void		remove_carriage_ret(char *str);
+char		*extract_cmd_arg(const char *cmd);
+client_t	*client_check_connect_serv(char *user_cmd);
 
 /*
 **	Sides Functions

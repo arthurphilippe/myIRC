@@ -26,7 +26,8 @@ MAIN_CLIENT	=	src/client/main.c
 
 SRCS_CLIENT	=	src/client/set_server_info.c \
 			src/client/error.c		\
-			src/client/client.c
+			src/client/client.c		\
+			src/client/command.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -57,7 +58,7 @@ all: $(NAME) $(NAME_CLIENT)
 
 debug: CFLAGS += -ggdb
 debug: fclean
-debug: $(NAME)
+debug: $(NAME) $(NAME_CLIENT)
 
 tests: $(TEST) $(NAME)
 

@@ -27,12 +27,14 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}",
-                "/usr/include/c++/7.3.1",
-                "/usr/include/c++/7.3.1/x86_64-pc-linux-gnu",
-                "/usr/include/c++/7.3.1/backward",
+                "/usr/lib/llvm-5.0/lib/clang/5.0.0/include",
+                "/usr/include/c++/7",
+                "/usr/include/x86_64-linux-gnu/c++/7",
+                "/usr/include/c++/7/backward",
                 "/usr/local/include",
-                "/usr/lib/clang/6.0.0/include",
+                "/usr/include/x86_64-linux-gnu",
                 "/usr/include",
+                "${workspaceFolder}/include/client",
                 "${workspaceFolder}/include"
             ],
             "defines": [],
@@ -40,11 +42,12 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}",
-                    "/usr/include/c++/7.3.1",
-                    "/usr/include/c++/7.3.1/x86_64-pc-linux-gnu",
-                    "/usr/include/c++/7.3.1/backward",
+                    "/usr/lib/llvm-5.0/lib/clang/5.0.0/include",
+                    "/usr/include/c++/7",
+                    "/usr/include/x86_64-linux-gnu/c++/7",
+                    "/usr/include/c++/7/backward",
                     "/usr/local/include",
-                    "/usr/lib/clang/6.0.0/include",
+                    "/usr/include/x86_64-linux-gnu",
                     "/usr/include"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
