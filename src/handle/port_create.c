@@ -20,9 +20,9 @@ static int port_bind(int sock, int port)
 	return (bind(sock, (struct sockaddr *) &sin, sizeof(sin)));
 }
 
-int handle_port_create(manager_t *serv, int port)
+int handle_port_create(manager_t *manager, int port)
 {
-	handle_t *hdl = manager_handle_get_free(serv);
+	handle_t *hdl = manager_handle_get_free(manager);
 	int sock = socket(PF_INET, SOCK_STREAM, 0);
 
 	if (!hdl || sock == -1

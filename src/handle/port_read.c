@@ -12,12 +12,12 @@
 /*
 ** To be called when fd is active
 */
-void handle_port_read(manager_t *serv, handle_t *port_hdl)
+void handle_port_read(manager_t *manager, handle_t *port_hdl)
 {
 	int socket;
 	struct sockaddr_in sin;
 	socklen_t sin_len = sizeof(sin);
-	handle_t *client_hdl = manager_handle_get_free(serv);
+	handle_t *client_hdl = manager_handle_get_free(manager);
 
 	if (!client_hdl)
 		return;

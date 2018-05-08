@@ -9,12 +9,12 @@
 #include <stdio.h>
 #include "manager.h"
 
-void handle_client_read(manager_t *serv, handle_t *client_hdl)
+void handle_client_read(manager_t *manager, handle_t *client_hdl)
 {
 	int r;
 	char buf[4096];
 
-	(void) serv;
+	(void) manager;
 	r = read(client_hdl->h_fd, buf, 4096);
 	if (r > 0)
 	{

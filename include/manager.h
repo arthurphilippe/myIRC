@@ -42,17 +42,17 @@ typedef struct		s_manager {
 
 manager_t	*manager_create();
 manager_t	*manager_create_port(int port);
-void		manager_loop(manager_t *serv);
+void		manager_loop(manager_t *manager);
 
-void handle_port_read(manager_t *serv, handle_t *port_hdl);
-void handle_client_read(manager_t *serv, handle_t *port_hdl);
+void handle_port_read(manager_t *manager, handle_t *port_hdl);
+void handle_client_read(manager_t *manager, handle_t *port_hdl);
 
-handle_t	*manager_handle_get_free(manager_t *serv);
-handle_t	*manager_handle_get_from_fd(manager_t *serv, int fd);
-int		handle_port_create(manager_t *serv, int port);
-void		handle_port_read(manager_t *serv, handle_t *port_hdl);
+handle_t	*manager_handle_get_free(manager_t *manager);
+handle_t	*manager_handle_get_from_fd(manager_t *manager, int fd);
+int		handle_port_create(manager_t *manager, int port);
+void		handle_port_read(manager_t *manager, handle_t *port_hdl);
 
-void		handle_client_read(manager_t *serv, handle_t *client_hdl);
+void		handle_client_read(manager_t *manager, handle_t *client_hdl);
 
 
 #endif /* !manager_H_ */

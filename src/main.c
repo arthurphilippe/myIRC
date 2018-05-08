@@ -10,10 +10,10 @@
 
 int main()
 {
-	printf("salut\n");
-	manager_t *serv = manager_create_port(4242);
+	printf("salut, je ne regarde pas les arguments. J'utilise le port 4242\n");
+	manager_t *manager = manager_create_port(4242);
 
-	if (!serv)
+	if (!manager)
 		return (84);
-	manager_loop(serv);
+	manager_loop(manager);
 }
