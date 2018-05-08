@@ -3,7 +3,8 @@
 		"client.h": "c",
 		"stdlib.h": "c",
 		"server.h": "c",
-		"*.ipp": "cpp"
+		"*.ipp": "cpp",
+		"typeinfo": "cpp"
 	},
 	"cSpell.enabledLanguageIds": [
 		"asciidoc",

@@ -5,6 +5,7 @@
 ** set structure
 */
 
+#include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -16,19 +17,23 @@ static int	set_fd(client_t *client)
 {
 	struct sockaddr_in addr;
 	struct protoent	*pt = getprotobyname("TCP");
+	struct hostent *ip = NULL;
+	struct in_addr **serv_char_ip = NULL;
 
 	memset(&addr, 0, sizeof(struct sockaddr_in));
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(client->port);
-	printf("PORT: %d\n", client->port);
-
+	if ((ip = gethostbyname(client->serv_ip)) == NULL) {
+		perror("gethostbyname");
+		return (RET_ERR);
+	}
+	serv_char_ip = (struct in_addr **) ip->h_addr_list;
+	inet_pton(AF_INET, inet_ntoa(*serv_char_ip[0]), &addr.sin_addr);
 	client->fd = socket(AF_INET, SOCK_STREAM, pt->p_proto);
 	if (connect(client->fd, (const struct sockaddr *)&addr,
-						sizeof(addr)) == -1) {
-							perror("test");
+						sizeof(addr)) == -1)
 		return (ret_int_error(RET_ERR, "connect failed: ",
 				"can't connect to", " the specified server"));
-						}
 	client->state = CONNECTED;
 	return (0);
 }

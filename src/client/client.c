@@ -17,6 +17,7 @@ static client_t *client_set_connection(char *cmd)
 			&& client->state == CONNECTED) {
 		printf("%s\n", client->serv_ip);
 		printf("%d\n", client->port);
+		printf("%d\n", client->state);
 	} else {
 		if (client != NULL)
 			free(client);
@@ -34,9 +35,10 @@ static int client_process(void)
 	while (true) {
 		len = 0;
 		str = NULL;
+		setco = NULL;
 		if ((getline(&str, &len, stdin)) == -1) {
 			free(str);
-			if (setco) {
+			if (setco != NULL) {
 				free(setco->serv_ip);
 				free(setco);
 			}
