@@ -9,17 +9,23 @@
 #include <stdlib.h>
 #include "client/client.h"
 
-client_t	*client_set_server_info(char *command)
+client_t	*client_set_server_info(char *arg)
 {
 	client_t *new_client = malloc(sizeof(client_t));
-	char **av;
+	char *tmp;
 
 	if (!new_client)
 		return (ret_null_error("malloc: ", MALLOC_FAIL, NULL));
 	memset(new_client, '\0', sizeof(client_t));
-	new_client->port = atoi(av[2]);
+	tmp = extract_cmd_arg(arg, ":");
+	if (tmp == NULL)
+		new_client->port = 6667;
+	else {
+		new_client->port = atoi(tmp);
+		free(tmp);
+	}
 	if (new_client->port == 0)
-		return (ret_null_error(av[2], ARG2_FAIL, NULL));
-	strcpy(new_client->serv_ip, av[1]);
+		return (ret_null_error("atoi failed: ", ARG2_FAIL, NULL));
+	new_client->serv_ip = extract_command(arg, ":");
 	return (new_client);
 }

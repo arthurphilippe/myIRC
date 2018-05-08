@@ -19,7 +19,7 @@ typedef enum e_state {
 }		state_t;
 
 typedef struct	s_client {
-	char	serv_ip[1024];
+	char	*serv_ip;
 	int	port;
 	state_t state;
 }		client_t;
@@ -29,9 +29,9 @@ typedef struct	s_client {
 */
 client_t	*client_set_server_info(char *);
 int		client_irc();
-char		*extract_command(char *str);
 void		remove_carriage_ret(char *str);
-char		*extract_cmd_arg(const char *cmd);
+char		*extract_cmd_arg(char *cmd, const char *delim);
+char		*extract_command(char *str, const char *delim);
 client_t	*client_check_connect_serv(char *user_cmd);
 
 /*

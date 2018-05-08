@@ -9,25 +9,37 @@
 #include <stdio.h>
 #include <client/client.h>
 
-static int client_process()
+static client_t *client_set_connection(char *cmd)
 {
-	int loop = 1;
+	client_t *client = NULL;
+
+	if ((client = client_check_connect_serv(cmd))) {
+		printf("%s\n", client->serv_ip);
+		printf("%d\n", client->port);
+	} else
+		dprintf(2, "%s\n", CLIENT_NOT_CONNECTED);
+	return (client);
+}
+
+static int client_process(void)
+{
 	char *str = NULL;
 	size_t len = 0;
+	client_t *setco = NULL;
 
-	while (loop) {
+	while (true) {
 		len = 0;
 		str = NULL;
 		if ((getline(&str, &len, stdin)) == -1) {
 			free(str);
-			return (0);
+			if (setco) {
+				free(setco->serv_ip);
+				free(setco);
+			}
+			break;
 		}
 		remove_carriage_ret(str);
-		if (client_check_connect_serv(str))
-			return (ret_int_error(RET_ERR, "OK", "OK", "OK"));
-		else
-			dprintf(2, "%s\n", CLIENT_NOT_CONNECTED);
-		printf("%s\n", str);
+		setco = client_set_connection(str);
 		free(str);
 	}
 	return (0);

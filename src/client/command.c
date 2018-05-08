@@ -20,67 +20,76 @@ void remove_carriage_ret(char *str)
 	}
 }
 
-static client_t *client_set_structure(char *arg)
-{
-	client_t *new_client = malloc(sizeof(client_t));
+// static client_t *client_set_structure(char *arg)
+// {
+// 	client_t *new_client = malloc(sizeof(client_t));
 
-	if (!new_client)
-		return (NULL);
-	new_client->state = NOT_CONNECTED;
-	new_client->port = 6667;
-	memset(new_client->serv_ip, '\0', 1024);
-	return (new_client);
-}
+// 	if (!new_client)
+// 		return (NULL);
+// 	new_client->state = NOT_CONNECTED;
+// 	new_client->port = 6667;
+// 	memset(new_client->serv_ip, '\0', 1024);
+// 	return (new_client);
+// }
 
 client_t *client_check_connect_serv(char *user_cmd)
 {
 	client_t *client = NULL;
 	char *client_cmd = NULL;
 
-	client_cmd = extract_command(user_cmd);
-	if (!client_cmd || (strlen(client_cmd) < 6))
-		return (false);
+	client_cmd = extract_command(user_cmd, " ");
+	if (client_cmd == NULL || (strlen(client_cmd) < 6)) {
+		if (client_cmd)
+			free(client_cmd);
+		return (NULL);
+	}
 	if (!strcmp(client_cmd, "/server")) {
 		free(client_cmd);
-		client_cmd = extract_cmd_arg(user_cmd);
-		client = client_set_structure(client_cmd);
-		free(client_cmd);
+		client_cmd = extract_cmd_arg(user_cmd, " ");
+		client = client_set_server_info(client_cmd);
+		if (client_cmd != NULL)
+			free(client_cmd);
 	}
 	return (client);
 }
 
-char *extract_command(char *str)
+char *extract_command(char *str, const char *delim)
 {
 	char *tmp;
 	char *dest = malloc(sizeof(char) * (strlen(str) + 1));
+	char s[1024];
 
-	if (!dest)
+	if (dest == NULL)
 		return (NULL);
+	memset(s, '\0', 1024);
 	memset(dest, '\0', strlen(str) + 1);
-	strcpy(dest, str);
-	tmp = strtok(dest, " ");
+	strcpy(s, str);
+	tmp = strtok(s, delim);
 	if (tmp == NULL) {
-		return (0);
+		return (NULL);
 	}
+	strcpy(dest, tmp);
 	return (dest);
 }
 
-char 	*extract_cmd_arg(const char *cmd)
+char 	*extract_cmd_arg(char *cmd, const char *delim)
 {
 	char *tmp;
 	char *dest = malloc(sizeof(char) * (strlen(cmd) + 1));
+	char s[1024];
 
-	if (!dest)
+	if (dest == NULL)
 		return (NULL);
-	memset(dest, '\0', strlen(cmd) + 1);
-	strcpy(dest, cmd);
-	tmp = strtok (dest, " ");
+	memset(s, '\0', 1024);
+	strcpy(s, cmd);
+	tmp = strtok (s, delim);
 	for (int i = 0; i < 1 && tmp != NULL; i++) {
-		tmp = strtok(NULL, " ");
+		tmp = strtok(NULL, delim);
 	}
 	if (tmp == NULL) {
-		return (NULL);
+		return (cmd);
 	}
+	memset(dest, '\0', strlen(cmd) + 1);
 	strcpy(dest, tmp);
 	return (dest);
 }
