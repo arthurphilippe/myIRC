@@ -32,7 +32,7 @@ static void initialize(char **str, size_t *len, client_t **setco)
 	*setco = NULL;
 }
 
-static int client_basic_info_loop(void)
+static client_t *client_basic_info_loop(void)
 {
 	char *str = NULL;
 	size_t len = 0;
@@ -49,9 +49,28 @@ static int client_basic_info_loop(void)
 			break;
 		}
 		remove_carriage_ret(str);
-		setco = client_set_connection(str);
-		if (setco != NULL)
-			free(setco);
+		if ((setco = client_set_connection(str)) != NULL)
+			return (setco);
+		free(str);
+	}
+	return (NULL);
+}
+
+static int client_irc_process(client_t *client)
+{
+	char *str = NULL;
+	size_t len = 0;
+
+	while (true) {
+		str = NULL;
+		len = 0;
+		if ((getline(&str, &len, stdin)) == -1) {
+			free(str);
+			free(client->serv_ip);
+			free(client);
+			break;
+		}
+		dprintf(client->fd, "%s\r", str);
 		free(str);
 	}
 	return (0);
@@ -59,6 +78,10 @@ static int client_basic_info_loop(void)
 
 int client_irc()
 {
-	client_basic_info_loop();
+	client_t *client;
+
+	if ((client = client_basic_info_loop()) == NULL)
+		return (RET_ERR);
+	client_irc_process(client);
 	return (0);
 }

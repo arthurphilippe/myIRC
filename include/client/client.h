@@ -28,7 +28,7 @@ typedef struct	s_client {
 /*
 **	Client IRC Core Function
 */
-client_t	*client_set_server_info(char *);
+client_t	*client_set_server_info(char *arg);
 int		client_irc();
 void		remove_carriage_ret(char *str);
 char		*extract_cmd_arg(char *cmd, const char *delim);
