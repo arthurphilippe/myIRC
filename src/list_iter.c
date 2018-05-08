@@ -18,6 +18,9 @@ void list_iter_set_mode(list_iter_t *iter, list_iter_mode_t mode)
 	case BCKW:
 		iter->li_node = iter->li_list->l_end;
 		break;
+	default:
+		iter->li_node = iter->li_list->l_start;
+		break;
 	}
 }
 
@@ -44,6 +47,8 @@ void *list_iter_next(list_iter_t *iter)
 		break;
 	case BCKW:
 		iter->li_node = iter->li_node->n_prev;
+		break;
+	default:
 		break;
 	}
 	return (ret);

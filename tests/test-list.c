@@ -284,3 +284,41 @@ Test(list_iterator, backward) {
 	free(iter);
 }
 
+Test(list_iterator, error) {
+	list_t *list = list_create(free);
+
+	cr_assert_eq(list_get_size(list), 0);
+
+	char *tmp = strdup("j'aime les pates");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	tmp = strdup("bah euh");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	tmp = strdup("toto");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	cr_assert_eq(list_get_size(list), 3);
+
+	list_iter_t *iter = list_iter_create(list, 12);
+	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	tmp = list_iter_next(iter);
+	list_destroy(list);
+	free(iter);
+}
