@@ -38,6 +38,7 @@ list_iter_t *list_iter_create(list_t *list, list_iter_mode_t mode)
 void *list_iter_next(list_iter_t *iter)
 {
 	void *ret;
+
 	if (!iter->li_node)
 		return (NULL);
 	ret = iter->li_node->n_data;

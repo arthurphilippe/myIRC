@@ -233,10 +233,16 @@ Test(list_iterator, forward) {
 	list_iter_t *iter = list_iter_create(list, FWD);
 	tmp = list_iter_next(iter);
 	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	list_erase(iter);
+	cr_assert_eq(list_get_size(list), 2);
 	tmp = list_iter_next(iter);
 	cr_assert_str_eq(tmp, "bah euh", "got %s instead of %s", tmp, "bah euh");
+	list_erase(iter);
+	cr_assert_eq(list_get_size(list), 1);
 	tmp = list_iter_next(iter);
 	cr_assert_str_eq(tmp, "j'aime les pates", "got %s instead of %s", tmp, "j'aime les pates");
+	list_erase(iter);
+	cr_assert_eq(list_get_size(list), 0);
 	tmp = list_iter_next(iter);
 	cr_assert(!tmp);
 	list_destroy(list);

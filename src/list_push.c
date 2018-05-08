@@ -8,6 +8,14 @@
 #include <stdlib.h>
 #include "list.h"
 
+static void list_node_add_first(list_t *list, list_node_t *fst_node)
+{
+	fst_node->n_next = NULL;
+	fst_node->n_prev = NULL;
+	list->l_start = fst_node;
+	list->l_end = fst_node;
+}
+
 int list_push_back(list_t *list, void *payload)
 {
 	list_node_t *new_node = malloc(sizeof(list_node_t));

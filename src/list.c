@@ -39,10 +39,32 @@ void list_destroy(list_t *list)
 	free(list);
 }
 
-void list_node_add_first(list_t *list, list_node_t *fst_node)
+static void list_erase_body(list_iter_t *iter, list_node_t *to_erase)
 {
-	fst_node->n_next = NULL;
-	fst_node->n_prev = NULL;
-	list->l_start = fst_node;
-	list->l_end = fst_node;
+	list_node_t *prev = to_erase->n_prev;
+	list_node_t *next = to_erase->n_next;
+	if (prev)
+		prev->n_next = next;
+	else
+		iter->li_list->l_start = next;
+	if (next)
+		next->n_prev = prev;
+	else
+		iter->li_list->l_start = prev;
+	iter->li_list->l_destructor(to_erase->n_data);
+	free(to_erase);
+	iter->li_list->l_size -= 1;
+
+}
+
+void list_erase(list_iter_t *iter)
+{
+	list_node_t *to_erase = NULL;
+
+	if (iter->li_node)
+		to_erase = iter->li_node->n_prev;
+	else if (iter->li_list->l_size == 1)
+		list_pop_front(iter->li_list);
+	if (to_erase)
+		list_erase_body(iter, to_erase);
 }

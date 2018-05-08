@@ -43,7 +43,6 @@ typedef struct			s_list_iterator {
 */
 list_t *list_create(void (*data_destructor)(void *));
 void list_destroy(list_t *list);
-void list_node_add_first(list_t *list, list_node_t *fst_node);
 int list_push_back(list_t *list, void *payload);
 int list_push_front(list_t *list, void *payload);
 void *list_get_front(list_t *list);
@@ -51,6 +50,7 @@ void *list_get_back(list_t *list);
 size_t list_get_size(list_t *list);
 void list_pop_front(list_t *list);
 void list_pop_back(list_t *list);
+void list_erase(list_iter_t *iter);
 
 list_iter_t *list_iter_create(list_t *list, list_iter_mode_t mode);
 void *list_iter_next(list_iter_t *iter);
