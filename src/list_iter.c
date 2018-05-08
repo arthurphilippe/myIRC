@@ -34,8 +34,10 @@ list_iter_t *list_iter_create(list_t *list, list_iter_mode_t mode)
 
 void *list_iter_next(list_iter_t *iter)
 {
+	void *ret;
 	if (!iter->li_node)
 		return (NULL);
+	ret = iter->li_node->n_data;
 	switch (iter->li_mode) {
 	case FWD:
 		iter->li_node = iter->li_node->n_next;
@@ -44,7 +46,5 @@ void *list_iter_next(list_iter_t *iter)
 		iter->li_node = iter->li_node->n_prev;
 		break;
 	}
-	if (!iter->li_node)
-		return (NULL);
-	return (iter->li_node->n_data);
+	return (ret);
 }

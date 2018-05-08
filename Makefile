@@ -23,6 +23,7 @@ SRCS		=	src/server/create.c		\
 			src/list_get.c			\
 			src/list_push.c			\
 			src/list_pop.c			\
+			src/list_iter.c			\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

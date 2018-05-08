@@ -201,3 +201,86 @@ Test(list, popbackAndPopFront) {
 	cr_assert_eq(list_get_size(list), 0);
 	list_destroy(list);
 }
+
+Test(list_iterator, forward) {
+	list_t *list = list_create(free);
+
+	cr_assert_eq(list_get_size(list), 0);
+
+	char *tmp = strdup("j'aime les pates");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	tmp = strdup("bah euh");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	tmp = strdup("toto");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_front(list, tmp);
+
+	cr_assert_eq(list_get_size(list), 3);
+
+	list_iter_t *iter = list_iter_create(list, FWD);
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "bah euh", "got %s instead of %s", tmp, "bah euh");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "j'aime les pates", "got %s instead of %s", tmp, "j'aime les pates");
+	tmp = list_iter_next(iter);
+	cr_assert(!tmp);
+	list_destroy(list);
+	free(iter);
+}
+
+Test(list_iterator, backward) {
+	list_t *list = list_create(free);
+
+	cr_assert_eq(list_get_size(list), 0);
+
+	char *tmp = strdup("j'aime les pates");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_back(list, tmp);
+
+	tmp = strdup("bah euh");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_back(list, tmp);
+
+	tmp = strdup("toto");
+	if (!tmp) {
+		cr_log_error("malloc failure");
+		cr_assert_fail();
+	}
+	list_push_back(list, tmp);
+
+	cr_assert_eq(list_get_size(list), 3);
+
+	list_iter_t *iter = list_iter_create(list, BCKW);
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "toto", "got %s instead of %s", tmp, "toto");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "bah euh", "got %s instead of %s", tmp, "bah euh");
+	tmp = list_iter_next(iter);
+	cr_assert_str_eq(tmp, "j'aime les pates", "got %s instead of %s", tmp, "j'aime les pates");
+	tmp = list_iter_next(iter);
+	cr_assert(!tmp);
+	list_destroy(list);
+	free(iter);
+}
+
