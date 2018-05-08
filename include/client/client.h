@@ -21,6 +21,7 @@ typedef enum e_state {
 typedef struct	s_client {
 	char	*serv_ip;
 	int	port;
+	int	fd;
 	state_t state;
 }		client_t;
 

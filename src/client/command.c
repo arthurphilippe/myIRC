@@ -39,7 +39,7 @@ client_t *client_check_connect_serv(char *user_cmd)
 
 	client_cmd = extract_command(user_cmd, " ");
 	if (client_cmd == NULL || (strlen(client_cmd) < 6)) {
-		if (client_cmd)
+		if (client_cmd != NULL)
 			free(client_cmd);
 		return (NULL);
 	}
@@ -66,6 +66,7 @@ char *extract_command(char *str, const char *delim)
 	strcpy(s, str);
 	tmp = strtok(s, delim);
 	if (tmp == NULL) {
+		free(dest);
 		return (NULL);
 	}
 	strcpy(dest, tmp);

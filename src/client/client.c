@@ -13,11 +13,15 @@ static client_t *client_set_connection(char *cmd)
 {
 	client_t *client = NULL;
 
-	if ((client = client_check_connect_serv(cmd))) {
+	if ((client = client_check_connect_serv(cmd))
+			&& client->state == CONNECTED) {
 		printf("%s\n", client->serv_ip);
 		printf("%d\n", client->port);
-	} else
+	} else {
+		if (client != NULL)
+			free(client);
 		dprintf(2, "%s\n", CLIENT_NOT_CONNECTED);
+	}
 	return (client);
 }
 
@@ -40,6 +44,8 @@ static int client_process(void)
 		}
 		remove_carriage_ret(str);
 		setco = client_set_connection(str);
+		if (setco != NULL)
+			free(setco);
 		free(str);
 	}
 	return (0);
