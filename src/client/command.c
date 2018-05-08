@@ -34,16 +34,15 @@ static client_t *client_set_structure(char *arg)
 
 client_t *client_check_connect_serv(char *user_cmd)
 {
-	client_t *client;
-	char *client_cmd;
+	client_t *client = NULL;
+	char *client_cmd = NULL;
 
 	client_cmd = extract_command(user_cmd);
-	if (!client_cmd || (strlen(client_cmd) < 7))
+	if (!client_cmd || (strlen(client_cmd) < 6))
 		return (false);
 	if (!strcmp(client_cmd, "/server")) {
 		free(client_cmd);
 		client_cmd = extract_cmd_arg(user_cmd);
-		printf("%s\n", client_cmd);
 		client = client_set_structure(client_cmd);
 		free(client_cmd);
 	}
@@ -53,29 +52,27 @@ client_t *client_check_connect_serv(char *user_cmd)
 char *extract_command(char *str)
 {
 	char *tmp;
-	char *dest = malloc(sizeof(char) * strlen(str));
+	char *dest = malloc(sizeof(char) * (strlen(str) + 1));
 
 	if (!dest)
 		return (NULL);
-	memset(dest, '\0', strlen(str));
+	memset(dest, '\0', strlen(str) + 1);
 	strcpy(dest, str);
-	tmp = strtok(str, " ");
+	tmp = strtok(dest, " ");
 	if (tmp == NULL) {
 		return (0);
 	}
-	memset(dest, '\0', strlen(str));
-	strcpy(dest, tmp);
 	return (dest);
 }
 
 char 	*extract_cmd_arg(const char *cmd)
 {
 	char *tmp;
-	char *dest = malloc(sizeof(char) * strlen(cmd));
+	char *dest = malloc(sizeof(char) * (strlen(cmd) + 1));
 
 	if (!dest)
 		return (NULL);
-	memset(dest, '\0', strlen(cmd));
+	memset(dest, '\0', strlen(cmd) + 1);
 	strcpy(dest, cmd);
 	tmp = strtok (dest, " ");
 	for (int i = 0; i < 1 && tmp != NULL; i++) {

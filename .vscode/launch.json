@@ -5,6 +5,27 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "(gdb) Launch Client",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/client",
+			"args": ["4243", "."],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "build debug",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{"text": "-gdb-set follow-fork-mode child"}
+			]
+		},
+		{
 			"name": "(gdb) Attach",
 			"type": "cppdbg",
 			"request": "attach",
