@@ -13,12 +13,12 @@ NAME		=	server
 
 MAIN		=	src/main.c
 
-SRCS		=	src/server/create.c		\
-			src/server/port_listen.c	\
-			src/server/port_read.c		\
-			src/server/handle_get.c		\
-			src/server/loop.c		\
-			src/server/client/read.c	\
+SRCS		=	src/manager/create.c		\
+			src/manager/handle_get.c	\
+			src/manager/loop.c		\
+			src/handle/port_read.c		\
+			src/handle/port_create.c	\
+			src/handle/client_read.c	\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\

@@ -7,17 +7,17 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include "server/server.h"
+#include "manager.h"
 
 /*
 ** To be called when fd is active
 */
-void server_port_read(server_t *serv, handle_t *port_hdl)
+void handle_port_read(manager_t *serv, handle_t *port_hdl)
 {
 	int socket;
 	struct sockaddr_in sin;
 	socklen_t sin_len = sizeof(sin);
-	handle_t *client_hdl = server_handle_get_free(serv);
+	handle_t *client_hdl = manager_handle_get_free(serv);
 
 	if (!client_hdl)
 		return;
@@ -26,6 +26,6 @@ void server_port_read(server_t *serv, handle_t *port_hdl)
 		return;
 	client_hdl->h_fd = socket;
 	client_hdl->h_type = H_CLIENT;
-	client_hdl->h_read = server_client_read;
+	client_hdl->h_read = handle_client_read;
 	// client_hdl->h_write =
 }

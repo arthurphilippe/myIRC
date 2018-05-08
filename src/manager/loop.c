@@ -9,32 +9,32 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stdio.h>
-#include "server/server.h"
+#include "manager.h"
 
-static int prepare_for_select(server_t *serv, fd_set *fd_read)
+static int prepare_for_select(manager_t *serv, fd_set *fd_read)
 {
 	int highest_fd = 0;
 
 	FD_ZERO(fd_read);
 	for (unsigned int i = 0; i < MAX_HANDLES; i++) {
-		if (serv->sv_handles[i].h_type != H_FREE) {
-			FD_SET(serv->sv_handles[i].h_fd, fd_read);
-			if (highest_fd < serv->sv_handles[i].h_fd)
-				highest_fd = serv->sv_handles[i].h_fd;
+		if (serv->m_handles[i].h_type != H_FREE) {
+			FD_SET(serv->m_handles[i].h_fd, fd_read);
+			if (highest_fd < serv->m_handles[i].h_fd)
+				highest_fd = serv->m_handles[i].h_fd;
 		}
 	}
 	return (highest_fd);
 }
 
-static void read_on_set_fd(server_t *sv, fd_set *fd_read)
+static void read_on_set_fd(manager_t *sv, fd_set *fd_read)
 {
 	for (unsigned int i = 0; i < MAX_HANDLES; i++) {
-		if (FD_ISSET(sv->sv_handles[i].h_fd, fd_read))
-			sv->sv_handles[i].h_read(sv, &sv->sv_handles[i]);
+		if (FD_ISSET(sv->m_handles[i].h_fd, fd_read))
+			sv->m_handles[i].h_read(sv, &sv->m_handles[i]);
 	}
 }
 
-static int body(server_t *serv)
+static int body(manager_t *serv)
 {
 	fd_set fd_read;
 	int highest_fd = prepare_for_select(serv, &fd_read);
@@ -44,13 +44,13 @@ static int body(server_t *serv)
 	tv.tv_usec = 0;
 	if (select(highest_fd + 1, &fd_read, NULL, NULL, &tv) == -1) {
 		perror("select");
-		return (SERV_RET_ERR);
+		return (MANAGER_RET_ERR);
 	}
 	read_on_set_fd(serv, &fd_read);
-	return (SERV_RET_OK);
+	return (MANAGER_RET_OK);
 }
 
-void server_loop(server_t *serv)
+void manager_loop(manager_t *serv)
 {
 	while (!body(serv));
 }

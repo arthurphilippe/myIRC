@@ -2,14 +2,14 @@
 ** EPITECH PROJECT, 2018
 ** PSU_myirc_2017
 ** File description:
-** read
+** client_read
 */
 
 #include <unistd.h>
 #include <stdio.h>
-#include "server/server.h"
+#include "manager.h"
 
-void server_client_read(server_t *serv, handle_t *client_hdl)
+void handle_client_read(manager_t *serv, handle_t *client_hdl)
 {
 	int r;
 	char buf[4096];
@@ -25,5 +25,4 @@ void server_client_read(server_t *serv, handle_t *client_hdl)
 		close(client_hdl->h_fd);
 		client_hdl->h_type = H_FREE;
 	}
-
 }
