@@ -14,6 +14,7 @@ NAME		=	server
 MAIN		=	src/main.c
 
 SRCS		=	src/manager/create.c		\
+			src/manager/delete.c	\
 			src/manager/handle_get.c	\
 			src/manager/loop.c		\
 			src/handle/port_read.c		\
