@@ -19,7 +19,10 @@ SRCS		=	src/server/create.c		\
 			src/server/handle_get.c		\
 			src/server/loop.c		\
 			src/server/client/read.c	\
-			src/list.c
+			src/list.c			\
+			src/list_get.c			\
+			src/list_push.c			\
+			src/list_pop.c			\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

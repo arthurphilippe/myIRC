@@ -10,6 +10,9 @@
 
 	#include "stddef.h"
 
+	#define LIST_ERR -1
+	#define LIST_OK 0
+
 typedef struct	s_list_node {
 	void	*n_data;
 	void	*n_next;
@@ -42,11 +45,11 @@ typedef struct			s_list_iterator {
 list_t *list_create(void (*data_destructor)(void *));
 void list_destroy(list_t *list);
 void list_node_add_first(list_t *list, list_node_t *fst_node);
-list_t *list_push_back(list_t *list, void *payload);
-list_t *list_push_front(list_t *list, void *payload);
+int list_push_back(list_t *list, void *payload);
+int list_push_front(list_t *list, void *payload);
 void *list_get_front(list_t *list);
 void *list_get_back(list_t *list);
-size_t list_size(list_t *list);
+size_t list_get_size(list_t *list);
 void list_pop_front(list_t *list);
 void list_pop_back(list_t *list);
 
