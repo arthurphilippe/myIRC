@@ -19,6 +19,7 @@ SRCS		=	src/server/create.c		\
 			src/server/handle_get.c		\
 			src/server/loop.c		\
 			src/server/client/read.c	\
+			src/list.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
@@ -26,7 +27,7 @@ OBJS		=	$(SRCS:.c=.o)
 
 TEST		=	unit_tests.out
 
-SRCS_TEST	=
+SRCS_TEST	=	tests/test-list.c
 
 SRCS_TEST	+=	$(OBJS)
 
@@ -73,7 +74,7 @@ fclean: clean
 	@printf "[\033[0;31mdeletion\033[0m][binary]% 32s\n" $(NAME) | tr " " "."
 
 artifacts_clean:
-	@printf "[\033[0;31mdeletion\033[0m][artifacts]% 29s\n" `find -type f \( -name "*.gcno" -o -name "*.gc*" -o -name "*.html" \) -delete -print | wc -l | tr -d '\n'` | tr " " "."
+	@printf "[\033[0;31mdeletion\033[0m][artifacts]% 29s\n" `find -type f \( -name "*.gcno" -o -name "*.gc*" \) -delete -print | wc -l | tr -d '\n'` | tr " " "."
 
 re: fclean all
 
