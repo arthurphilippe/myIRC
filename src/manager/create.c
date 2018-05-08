@@ -20,6 +20,7 @@ manager_t *server_create()
 	if (!manager)
 		return (NULL);
 	memset(manager->m_handles, 0, MAX_HANDLES * sizeof(handle_t));
+	manager->m_live = true;
 	return (manager);
 }
 

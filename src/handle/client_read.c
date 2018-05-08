@@ -8,21 +8,20 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "manager.h"
+#include "handle/client.h"
 
 void handle_client_read(manager_t *manager, handle_t *client_hdl)
 {
 	int r;
 	char buf[4096];
+	handle_client_t *data = client_hdl->h_data;
 
-	(void) manager;
 	r = read(client_hdl->h_fd, buf, 4096);
 	if (r > 0)
 	{
 		buf[r] = '\0';
-		printf("%d: %s\n", client_hdl->h_fd, buf);
+		printf("%s: %s\n", data->hc_nickname, buf);
 	} else {
-		printf("%d: Connection closed\n", client_hdl->h_fd);
-		close(client_hdl->h_fd);
-		client_hdl->h_type = H_FREE;
+		handle_client_delete(manager, client_hdl);
 	}
 }

@@ -52,5 +52,5 @@ static int body(manager_t *manager)
 
 void manager_loop(manager_t *manager)
 {
-	while (!body(manager));
+	while (!body(manager) && manager->m_live == true);
 }

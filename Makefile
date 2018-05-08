@@ -18,7 +18,9 @@ SRCS		=	src/manager/create.c		\
 			src/manager/loop.c		\
 			src/handle/port_read.c		\
 			src/handle/port_create.c	\
+			src/handle/client_create.c	\
 			src/handle/client_read.c	\
+			src/handle/client_delete.c	\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\

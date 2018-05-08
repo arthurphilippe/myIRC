@@ -8,10 +8,14 @@
 #ifndef HANDLE_MANAGER_H_
 	#define HANDLE_MANAGER_H_
 
+	#include <stdbool.h>
+
 typedef enum	e_handle_type {
 	H_FREE = 0,
 	H_PORT,
 	H_CLIENT,
+	H_SERVER,
+	H_STDIN,
 }		handle_type_t;
 
 typedef void (*handle_func_t)();
@@ -25,6 +29,7 @@ typedef struct		s_handle {
 	handle_type_t	h_type;
 	handle_func_t	h_read;
 	handle_func_t	h_write;
+	void		*h_data;
 }			handle_t;
 
 #define MAX_HANDLES 255
@@ -38,6 +43,7 @@ typedef struct		s_handle {
 typedef struct		s_manager {
 	handle_t	m_handles[MAX_HANDLES];
 	m_data_t	m_data;
+	bool		m_live;
 }			manager_t;
 
 manager_t	*manager_create();
@@ -52,7 +58,9 @@ handle_t	*manager_handle_get_from_fd(manager_t *manager, int fd);
 int		handle_port_create(manager_t *manager, int port);
 void		handle_port_read(manager_t *manager, handle_t *port_hdl);
 
-void		handle_client_read(manager_t *manager, handle_t *client_hdl);
+void	handle_client_read(manager_t *manager, handle_t *client_hdl);
+int	handle_client_create(manager_t *manager, int sock);
+void	handle_client_delete(manager_t *manager, handle_t *client_hdl);
 
 
 #endif /* !manager_H_ */
