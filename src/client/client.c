@@ -16,8 +16,7 @@ static client_t *client_set_connection(char *cmd)
 	if ((client = client_check_connect_serv(cmd))
 			&& client->state == CONNECTED) {
 		printf("%s\n", client->serv_ip);
-		printf("%d\n", client->port);
-		printf("%d\n", client->state);
+		return (client);
 	} else {
 		if (client != NULL)
 			free(client);
@@ -26,16 +25,21 @@ static client_t *client_set_connection(char *cmd)
 	return (client);
 }
 
-static int client_process(void)
+static void initialize(char **str, size_t *len, client_t **setco)
+{
+	*len = 0;
+	*str = NULL;
+	*setco = NULL;
+}
+
+static int client_basic_info_loop(void)
 {
 	char *str = NULL;
 	size_t len = 0;
 	client_t *setco = NULL;
 
 	while (true) {
-		len = 0;
-		str = NULL;
-		setco = NULL;
+		initialize(&str, &len, &setco);
 		if ((getline(&str, &len, stdin)) == -1) {
 			free(str);
 			if (setco != NULL) {
@@ -55,6 +59,6 @@ static int client_process(void)
 
 int client_irc()
 {
-	client_process();
+	client_basic_info_loop();
 	return (0);
 }

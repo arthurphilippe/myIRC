@@ -23,10 +23,8 @@ static int	set_fd(client_t *client)
 	memset(&addr, 0, sizeof(struct sockaddr_in));
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(client->port);
-	if ((ip = gethostbyname(client->serv_ip)) == NULL) {
-		perror("gethostbyname");
+	if ((ip = gethostbyname(client->serv_ip)) == NULL)
 		return (RET_ERR);
-	}
 	serv_char_ip = (struct in_addr **) ip->h_addr_list;
 	inet_pton(AF_INET, inet_ntoa(*serv_char_ip[0]), &addr.sin_addr);
 	client->fd = socket(AF_INET, SOCK_STREAM, pt->p_proto);
@@ -38,14 +36,10 @@ static int	set_fd(client_t *client)
 	return (0);
 }
 
-client_t	*client_set_server_info(char *arg)
+static void client_set_port(client_t *new_client, char *arg)
 {
-	client_t *new_client = malloc(sizeof(client_t));
 	char *tmp;
 
-	if (!new_client)
-		return (ret_null_error("malloc: ", MALLOC_FAIL, NULL));
-	memset(new_client, '\0', sizeof(client_t));
 	tmp = extract_cmd_arg(arg, ":");
 	if (tmp == NULL)
 		new_client->port = 6667;
@@ -58,11 +52,21 @@ client_t	*client_set_server_info(char *arg)
 					", using default port '6667'");
 		new_client->port = 6667;
 	}
+}
+
+client_t	*client_set_server_info(char *arg)
+{
+	client_t *new_client = malloc(sizeof(client_t));
+
+	if (!new_client)
+		return (ret_null_error("malloc: ", MALLOC_FAIL, NULL));
+	memset(new_client, '\0', sizeof(client_t));
 	new_client->serv_ip = extract_command(arg, ":");
-		if (set_fd(new_client) == RET_ERR) {
-			free(new_client->serv_ip);
-			free(new_client);
-			return (NULL);
-		}
+	client_set_port(new_client, arg);
+	if (set_fd(new_client) == RET_ERR) {
+		free(new_client->serv_ip);
+		free(new_client);
+		return (NULL);
+	}
 	return (new_client);
 }
