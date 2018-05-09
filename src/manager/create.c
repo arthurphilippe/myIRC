@@ -54,5 +54,6 @@ manager_t *manager_create_port(int port)
 		free(manager);
 		return (NULL);
 	}
+	manager->m_mode = SERVER;
 	return (manager);
 }

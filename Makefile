@@ -14,9 +14,12 @@ NAME		=	server
 MAIN		=	src/main.c
 
 SRCS		=	src/manager/create.c		\
-			src/manager/delete.c	\
 			src/manager/handle_get.c	\
 			src/manager/loop.c		\
+			src/manager/delete.c		\
+			src/manager/channel_join.c	\
+			src/manager/channel_leave.c	\
+			src/manager/client.c	\
 			src/handle/port_read.c		\
 			src/handle/port_create.c	\
 			src/handle/client_create.c	\
@@ -27,6 +30,7 @@ SRCS		=	src/manager/create.c		\
 			src/list_push.c			\
 			src/list_pop.c			\
 			src/list_iter.c			\
+			src/list_find.c			\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

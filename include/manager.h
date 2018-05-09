@@ -36,9 +36,16 @@ typedef struct		s_handle {
 	void		*h_data;
 }			handle_t;
 
+typedef enum	e_manager_mode {
+		UNK,
+		SERVER,
+		CLIENT,
+}		manager_mode_t;
+
 typedef struct		s_manager {
 	handle_t	m_handles[MAX_HANDLES];
 	void		*m_data;
+	manager_mode_t	m_mode;
 	bool		m_live;
 }			manager_t;
 
