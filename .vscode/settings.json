@@ -4,6 +4,11 @@
 		"array": "c",
 		"hash_map": "c",
 		"string_view": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"stdio.h": "c",
+		"manager.h": "c",
+		"string.h": "c",
+		"unistd.h": "c",
+		"*.ipp": "c"
 	}
 }

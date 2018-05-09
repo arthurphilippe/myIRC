@@ -5,11 +5,12 @@
 ** IRC Core Func
 */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <client/client.h>
 
-static client_t *client_set_connection(char *cmd)
+client_t *client_set_connection(char *cmd)
 {
 	client_t *client = NULL;
 
@@ -25,63 +26,30 @@ static client_t *client_set_connection(char *cmd)
 	return (client);
 }
 
-static void initialize(char **str, size_t *len, client_t **setco)
+client_t *client_basic_info_loop(manager_t *manager, handle_t *hdl)
 {
-	*len = 0;
-	*str = NULL;
-	*setco = NULL;
-}
+	int len = 0;
+	char buf[4096];
 
-static client_t *client_basic_info_loop(void)
-{
-	char *str = NULL;
-	size_t len = 0;
-	client_t *setco = NULL;
-
-	while (true) {
-		initialize(&str, &len, &setco);
-		if ((getline(&str, &len, stdin)) == -1) {
-			free(str);
-			if (setco != NULL) {
-				free(setco->serv_ip);
-				free(setco);
-			}
-			break;
-		}
-		remove_carriage_ret(str);
-		if ((setco = client_set_connection(str)) != NULL)
-			return (setco);
-		free(str);
+	if ((len = read(hdl->h_fd, buf, 4096)) == -1)
+		return (NULL);
+	remove_carriage_ret(buf);
+	if ((manager->m_data = client_set_connection(buf)) != NULL) {
+		return (manager->m_data);
 	}
 	return (NULL);
 }
 
-static int client_irc_process(client_t *client)
+static int client_irc_process(manager_t *manager)
 {
-	char *str = NULL;
-	size_t len = 0;
-
-	while (true) {
-		str = NULL;
-		len = 0;
-		if ((getline(&str, &len, stdin)) == -1) {
-			free(str);
-			free(client->serv_ip);
-			free(client);
-			break;
-		}
-		dprintf(client->fd, "%s\r", str);
-		free(str);
-	}
+	(void) manager;
 	return (0);
 }
 
-int client_irc()
+void client_irc(manager_t *manager, handle_t *hdl)
 {
-	client_t *client;
-
-	if ((client = client_basic_info_loop()) == NULL)
-		return (RET_ERR);
-	client_irc_process(client);
-	return (0);
+	if (manager->m_data == NULL)
+		client_basic_info_loop(manager, hdl);
+	else
+		client_irc_process(manager);
 }

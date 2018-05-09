@@ -40,7 +40,23 @@ MAIN_CLIENT	=	src/client/main.c
 SRCS_CLIENT	=	src/client/set_server_info.c \
 			src/client/error.c		\
 			src/client/client.c		\
-			src/client/command.c
+			src/client/command.c		\
+			src/client/create.c		\
+			src/manager/create.c		\
+			src/manager/handle_get.c	\
+			src/manager/delete.c		\
+			src/handle/client_delete.c	\
+			src/handle/port_create.c	\
+			src/handle/port_read.c		\
+			src/handle/client_create.c	\
+			src/handle/client_read.c	\
+			src/list.c			\
+			src/list_get.c			\
+			src/list_push.c			\
+			src/list_pop.c			\
+			src/list_iter.c			\
+			src/list_find.c			\
+			src/manager/loop.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 

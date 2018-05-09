@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "client/client.h"
+#include "manager.h"
 
 static void print_usage(void)
 {
@@ -15,7 +16,8 @@ static void print_usage(void)
 
 int main(void)
 {
+	manager_t *manager = manager_create_connect(4242);
+	manager_loop(manager);
 	print_usage();
-	client_irc();
 	return (0);
 }

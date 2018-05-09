@@ -10,6 +10,9 @@
 #include <unistd.h>
 #include "manager.h"
 
+/*
+**	Bind 'sock' to 'port'
+*/
 static int port_bind(int sock, int port)
 {
 	struct sockaddr_in sin;
@@ -20,6 +23,10 @@ static int port_bind(int sock, int port)
 	return (bind(sock, (struct sockaddr *) &sin, sizeof(sin)));
 }
 
+/*
+**	Set a free fd in manager to the port
+**	given as argument
+*/
 int handle_port_create(manager_t *manager, int port)
 {
 	handle_t *hdl = manager_handle_get_free(manager);
