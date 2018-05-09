@@ -27,6 +27,8 @@ void manager_delete(manager_t *manager)
 
 void manager_delete_port(manager_t *manager)
 {
+	server_t *serv = manager->m_data;
+
 	for (unsigned int i = 0; i < MAX_HANDLES; i++) {
 		if (manager->m_handles[i].h_type == H_PORT) {
 			shutdown(manager->m_handles[i].h_fd, SHUT_RDWR);
@@ -35,7 +37,6 @@ void manager_delete_port(manager_t *manager)
 			handle_client_delete(manager, &manager->m_handles[i]);
 		}
 	}
-	server_t *serv = manager->m_data;
 	list_destroy(serv->sv_channels);
 	list_destroy(serv->sv_clients);
 	free(manager->m_data);

@@ -20,7 +20,7 @@ void handle_client_read(manager_t *manager, handle_t *client_hdl)
 	if (r > 0)
 	{
 		buf[r] = '\0';
-		printf("%s: %s\n", data->hc_nickname, buf);
+		printf("%s: %s\n", data->hc_nick, buf);
 	} else {
 		handle_client_delete(manager, client_hdl);
 	}

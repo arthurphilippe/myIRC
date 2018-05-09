@@ -14,7 +14,7 @@
 
 static void init_data(handle_client_t *data)
 {
-	data->hc_nickname = strdup("anon");
+	data->hc_nick = strdup("anon");
 	data->hc_channels = list_create(NULL);
 }
 

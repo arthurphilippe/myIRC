@@ -21,7 +21,7 @@ void handle_client_delete(manager_t *manager, handle_t *client_hdl)
 		close(client_hdl->h_fd);
 	}
 	client_hdl->h_type = H_FREE;
-	free(data->hc_nickname);
+	free(data->hc_nick);
 	list_destroy(data->hc_channels);
 	manager_client_remove(manager, client_hdl);
 	free(data);

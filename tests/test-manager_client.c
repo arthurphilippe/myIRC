@@ -23,7 +23,7 @@ Test(manager_client, one_client) {
 		cr_assert_fail();
 	}
 	server_t *serv = manager->m_data;
-	serv->sv_channels = list_create(NULL);
+	serv->sv_channels = list_create(manager_channel_destroy);
 	serv->sv_clients = list_create(NULL);
 	cr_assert(serv->sv_channels && serv->sv_clients);
 	handle_client_create(manager, 2);
@@ -54,7 +54,7 @@ Test(manager_client, multi_client) {
 		cr_assert_fail();
 	}
 	server_t *serv = manager->m_data;
-	serv->sv_channels = list_create(NULL);
+	serv->sv_channels = list_create(manager_channel_destroy);
 	serv->sv_clients = list_create(NULL);
 	cr_assert(serv->sv_channels && serv->sv_clients);
 	handle_client_create(manager, 1);

@@ -19,12 +19,14 @@ SRCS		=	src/manager/create.c		\
 			src/manager/delete.c		\
 			src/manager/channel_join.c	\
 			src/manager/channel_leave.c	\
+			src/manager/channel_destroy.c	\
 			src/manager/client.c	\
 			src/handle/port_read.c		\
 			src/handle/port_create.c	\
 			src/handle/client_create.c	\
 			src/handle/client_read.c	\
 			src/handle/client_delete.c	\
+			src/handle/client_set_nick.c	\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\

@@ -11,7 +11,7 @@
 	#include "list.h"
 
 typedef struct	s_handle_client {
-	char	*hc_nickname;
+	char	*hc_nick;
 	list_t	*hc_channels;
 }		handle_client_t;
 
