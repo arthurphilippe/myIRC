@@ -28,7 +28,6 @@ Test(manager_client, one_client) {
 	cr_assert(serv->sv_channels && serv->sv_clients);
 	handle_client_create(manager, 2);
 	cr_assert(manager->m_handles[0].h_fd == 2);
-	manager_client_add(manager, &manager->m_handles[0]);
 
 	list_iter_t *iter = list_find_addr(serv->sv_clients, &manager->m_handles[0]);
 	cr_assert(iter);
@@ -62,8 +61,6 @@ Test(manager_client, multi_client) {
 	handle_client_create(manager, 2);
 	cr_assert(manager->m_handles[0].h_fd == 1);
 	cr_assert(manager->m_handles[1].h_fd == 2);
-	manager_client_add(manager, &manager->m_handles[0]);
-	manager_client_add(manager, &manager->m_handles[1]);
 
 	list_iter_t *iter = list_find_addr(serv->sv_clients, &manager->m_handles[0]);
 	cr_assert(iter);

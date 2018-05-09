@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "manager.h"
 #include "handle/client.h"
+#include "server.h"
 
 static void init_data(handle_client_t *data)
 {
@@ -34,5 +35,6 @@ int handle_client_create(manager_t *manager, int sock)
 	hdl->h_fd = sock;
 	hdl->h_type = H_CLIENT;
 	hdl->h_read = handle_client_read;
+	manager_client_add(manager, hdl);
 	return (MANAGER_RET_OK);
 }

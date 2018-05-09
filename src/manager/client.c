@@ -5,6 +5,7 @@
 ** add_client
 */
 
+#include <stdlib.h>
 #include "manager.h"
 #include "server.h"
 
@@ -19,9 +20,10 @@ static void rm_from_all_channel(list_t *channels, handle_t *client)
 {
 	list_iter_t *iter;
 	for (iter = list_iter_create(channels, FWD);
-		list_iter_access(iter); list_iter_next(iter)) {
+		iter && list_iter_access(iter); list_iter_next(iter)) {
 		manager_channel_leave(list_iter_access(iter), client);
 	}
+	free(iter);
 }
 
 void manager_client_remove(manager_t *manager, handle_t *client)
@@ -29,7 +31,9 @@ void manager_client_remove(manager_t *manager, handle_t *client)
 	server_t *serv = manager->m_data;
 	list_iter_t *iter = list_find_addr(serv->sv_clients, client);
 
-	if (iter)
+	if (iter) {
 		list_erase(iter);
+		free(iter);
+	}
 	rm_from_all_channel(serv->sv_channels, client);
 }
