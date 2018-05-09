@@ -36,6 +36,7 @@ Test(manager_client, one_client) {
 	void *save = &manager->m_handles[0];
 	handle_client_delete(manager, &manager->m_handles[0]);
 
+	free(iter);
 	iter = list_find_addr(serv->sv_clients, save);
 	cr_assert(!iter);
 	cr_assert_eq(manager->m_handles[0].h_type, H_FREE);
@@ -69,6 +70,7 @@ Test(manager_client, multi_client) {
 	void *save = &manager->m_handles[0];
 	handle_client_delete(manager, &manager->m_handles[0]);
 
+	free(iter);
 	iter = list_find_addr(serv->sv_clients, save);
 	cr_assert(!iter);
 	cr_assert_eq(manager->m_handles[0].h_type, H_FREE);
