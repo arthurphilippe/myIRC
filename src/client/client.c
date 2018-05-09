@@ -28,6 +28,7 @@ client_t *client_set_connection(char *cmd)
 
 client_t *client_basic_info_loop(manager_t *manager, handle_t *hdl)
 {
+	client_t *client;
 	int len = 0;
 	char buf[4096];
 
@@ -36,15 +37,26 @@ client_t *client_basic_info_loop(manager_t *manager, handle_t *hdl)
 		return (NULL);
 	if (len > 0)
 		remove_carriage_ret(buf);
-	if ((manager->m_data = client_set_connection(buf)) != NULL) {
+	if ((client = client_set_connection(buf)) != NULL) {
+		manager->m_data = client;
+		manager_set_irc_socket(manager, client->fd);
 		return (manager->m_data);
 	}
 	return (NULL);
 }
 
-static int client_irc_process(manager_t *manager)
+static int client_irc_process(manager_t *manager, handle_t *hdl)
 {
 	(void) manager;
+	int len = 0;
+	char buf[4096];
+
+	memset(buf, '\0', 4096);
+	if ((len = read(hdl->h_fd, buf, 4096)) == -1)
+		return (RET_ERR);
+	if (len > 0)
+		remove_carriage_ret(buf);
+	dprintf(1, "%s\r\n", buf);
 	return (0);
 }
 
@@ -53,5 +65,5 @@ void client_irc(manager_t *manager, handle_t *hdl)
 	if (manager->m_data == NULL)
 		client_basic_info_loop(manager, hdl);
 	else
-		client_irc_process(manager);
+		client_irc_process(manager, hdl);
 }
