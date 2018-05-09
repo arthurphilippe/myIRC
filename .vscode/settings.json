@@ -1,36 +1,9 @@
 {
 	"files.associations": {
-		"client.h": "c",
-		"stdlib.h": "c",
 		"server.h": "c",
-		"*.ipp": "cpp",
-		"typeinfo": "cpp"
-	},
-	"cSpell.enabledLanguageIds": [
-		"asciidoc",
-		"cpp",
-		"csharp",
-		"css",
-		"go",
-		"handlebars",
-		"html",
-		"jade",
-		"javascript",
-		"javascriptreact",
-		"json",
-		"latex",
-		"less",
-		"markdown",
-		"php",
-		"plaintext",
-		"pub",
-		"python",
-		"restructuredtext",
-		"rust",
-		"scss",
-		"text",
-		"typescript",
-		"typescriptreact",
-		"yml"
-	]
+		"array": "c",
+		"hash_map": "c",
+		"string_view": "c",
+		"cmath": "c"
+	}
 }

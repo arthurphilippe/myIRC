@@ -15,13 +15,26 @@ NAME		=	server
 
 MAIN		=	src/main.c
 
-SRCS		=	src/server/create.c		\
-			src/server/port_listen.c	\
-			src/server/port_read.c		\
-			src/server/handle_get.c		\
-			src/server/loop.c		\
-			src/server/client/read.c	\
-	
+SRCS		=	src/manager/create.c		\
+			src/manager/handle_get.c	\
+			src/manager/loop.c		\
+			src/manager/delete.c		\
+			src/manager/channel_join.c	\
+			src/manager/channel_leave.c	\
+			src/manager/client.c	\
+			src/handle/port_read.c		\
+			src/handle/port_create.c	\
+			src/handle/client_create.c	\
+			src/handle/client_read.c	\
+			src/handle/client_delete.c	\
+			src/list.c			\
+			src/list_get.c			\
+			src/list_push.c			\
+			src/list_pop.c			\
+			src/list_iter.c			\
+			src/list_find.c			\
+
+
 MAIN_CLIENT	=	src/client/main.c
 
 SRCS_CLIENT	=	src/client/set_server_info.c \
@@ -39,7 +52,7 @@ OBJS_CLIENT	=	$(SRCS_CLIENT:.c=.o)
 
 TEST		=	unit_tests.out
 
-SRCS_TEST	=
+SRCS_TEST	=	tests/test-list.c
 
 SRCS_TEST	+=	$(OBJS)
 
@@ -93,7 +106,7 @@ fclean: clean
 	@printf "[\033[0;31mdeletion\033[0m][binary]% 32s\n" $(NAME_CLIENT) | tr " " "."
 
 artifacts_clean:
-	@printf "[\033[0;31mdeletion\033[0m][artifacts]% 29s\n" `find -type f \( -name "*.gcno" -o -name "*.gc*" -o -name "*.html" \) -delete -print | wc -l | tr -d '\n'` | tr " " "."
+	@printf "[\033[0;31mdeletion\033[0m][artifacts]% 29s\n" `find -type f \( -name "*.gcno" -o -name "*.gc*" \) -delete -print | wc -l | tr -d '\n'` | tr " " "."
 
 re: fclean all
 
