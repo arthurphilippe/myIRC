@@ -16,7 +16,7 @@ static void print_usage(void)
 
 int main(void)
 {
-	manager_t *manager = manager_create_connect(4242);
+	manager_t *manager = manager_create_connect();
 	manager_loop(manager);
 	print_usage();
 	return (0);

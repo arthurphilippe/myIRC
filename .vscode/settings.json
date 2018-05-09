@@ -9,6 +9,7 @@
 		"manager.h": "c",
 		"string.h": "c",
 		"unistd.h": "c",
-		"*.ipp": "c"
+		"*.ipp": "c",
+		"stdlib.h": "c"
 	}
 }

@@ -20,18 +20,6 @@ void remove_carriage_ret(char *str)
 	}
 }
 
-// static client_t *client_set_structure(char *arg)
-// {
-// 	client_t *new_client = malloc(sizeof(client_t));
-
-// 	if (!new_client)
-// 		return (NULL);
-// 	new_client->state = NOT_CONNECTED;
-// 	new_client->port = 6667;
-// 	memset(new_client->serv_ip, '\0', 1024);
-// 	return (new_client);
-// }
-
 client_t *client_check_connect_serv(char *user_cmd)
 {
 	client_t *client = NULL;
@@ -47,8 +35,6 @@ client_t *client_check_connect_serv(char *user_cmd)
 		free(client_cmd);
 		client_cmd = extract_cmd_arg(user_cmd, " ");
 		client = client_set_server_info(client_cmd);
-		if (client_cmd != NULL)
-			free(client_cmd);
 	}
 	return (client);
 }
@@ -73,7 +59,7 @@ char *extract_command(char *str, const char *delim)
 	return (dest);
 }
 
-char 	*extract_cmd_arg(char *cmd, const char *delim)
+char 	*extract_cmd_arg(char *cmd, char *delim)
 {
 	char *tmp;
 	char *dest = malloc(sizeof(char) * (strlen(cmd) + 1));

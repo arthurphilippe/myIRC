@@ -39,12 +39,15 @@ static int	set_fd(client_t *client)
 static void client_set_port(client_t *new_client, char *arg)
 {
 	char *tmp;
+	char buf[1024];
 
+	memset(buf, '\0', 1024);
 	tmp = extract_cmd_arg(arg, ":");
 	if (tmp == NULL)
 		new_client->port = 6667;
 	else {
-		new_client->port = atoi(tmp);
+		strcpy(buf, tmp);
+		new_client->port = atoi(buf);
 		free(tmp);
 	}
 	if (new_client->port == 0) {
