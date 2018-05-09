@@ -54,6 +54,9 @@ manager_t *manager_create_port(int port)
 		free(manager);
 		return (NULL);
 	}
+	server_t *serv = manager->m_data;
+	serv->sv_channels = list_create(NULL);
+	serv->sv_clients = list_create(NULL);
 	manager->m_mode = SERVER;
 	return (manager);
 }
