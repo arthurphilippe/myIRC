@@ -41,6 +41,7 @@ OBJS		=	$(SRCS:.c=.o)
 TEST		=	unit_tests.out
 
 SRCS_TEST	=	tests/test-list.c	\
+			tests/test-handle_client.c \
 			tests/test-manager_client.c
 
 SRCS_TEST	+=	$(OBJS)

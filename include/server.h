@@ -29,5 +29,6 @@ void manager_channel_destroy(void *ptr);
 
 void manager_client_remove(manager_t *manager, handle_t *client);
 int manager_client_add(manager_t *manager, handle_t *client);
+int handle_client_set_nick(handle_t *client_hdl, const char *nick);
 
 #endif /* !SERVER_H_ */
