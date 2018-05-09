@@ -50,13 +50,14 @@ static int client_irc_process(manager_t *manager, handle_t *hdl)
 	(void) manager;
 	int len = 0;
 	char buf[4096];
+	client_t *client = manager->m_data;
 
 	memset(buf, '\0', 4096);
 	if ((len = read(hdl->h_fd, buf, 4096)) == -1)
 		return (RET_ERR);
 	if (len > 0)
 		remove_carriage_ret(buf);
-	dprintf(1, "%s\r\n", buf);
+	dprintf(client->fd, "%s\r\n", buf);
 	return (0);
 }
 
