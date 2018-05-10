@@ -16,7 +16,6 @@ client_t *client_set_connection(char *cmd)
 	client_t *client = NULL;
 
 	if ((client = client_check_connect_serv(cmd))) {
-		printf("%s\n", client->serv_ip);
 		return (client);
 	} else {
 		if (client != NULL)
@@ -57,8 +56,6 @@ static int client_irc_process(manager_t *manager, handle_t *hdl)
 		return (RET_ERR);
 	if (len > 0)
 		remove_carriage_ret(buf);
-	printf("%s\n", buf);
-	printf("%sazrzr\n", buf);
 	dprintf(client->fd, "%s\r\n", buf);
 	return (0);
 }

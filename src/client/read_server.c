@@ -5,11 +5,16 @@
 ** ReadServ
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
 #include "client/client.h"
 
+/*
+**	Need to change this soon
+**	the function should delete allocated memory
+*/
 void client_read_serv(manager_t *manager, handle_t *client_hdl)
 {
 	int r;
@@ -20,7 +25,7 @@ void client_read_serv(manager_t *manager, handle_t *client_hdl)
 	if ((r = read(client_hdl->h_fd, buf, 4096)) <= 0) {
 		/* Delete something **/
 		printf(ANSI_COLOR_BLUE"EXIT\n"ANSI_COLOR_RESET);
-		exit(44);
+		exit(0);
 		return;
 	}
 	dprintf(1,
