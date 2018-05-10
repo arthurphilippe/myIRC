@@ -10,6 +10,8 @@
 		"string.h": "c",
 		"unistd.h": "c",
 		"*.ipp": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"sstream": "c",
+		"client.h": "c"
 	}
 }

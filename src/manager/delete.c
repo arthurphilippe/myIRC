@@ -17,7 +17,7 @@ void manager_delete(manager_t *manager)
 			shutdown(manager->m_handles[i].h_fd, SHUT_RDWR);
 			close(manager->m_handles[i].h_fd);
 		} else if (manager->m_handles[i].h_type == H_CLIENT) {
-			handle_client_delete(manager, &manager->m_handles[i]);
+			// handle_client_delete(manager, &manager->m_handles[i]);
 		}
 	}
 	free(manager->m_data);

@@ -6,18 +6,18 @@
 */
 
 #include <stdio.h>
-#include "client/client.h"
 #include "manager.h"
+#include "handle/server.h"
 
-static void print_usage(void)
-{
-	dprintf(2, "%s\n", PRINT_USAGE);
-}
+// static void print_usage(void)
+// {
+// 	dprintf(2, "%s\n", PRINT_USAGE);
+// }
 
 int main(void)
 {
 	manager_t *manager = manager_create_connect();
 	manager_loop(manager);
-	print_usage();
+	// print_usage();
 	return (0);
 }

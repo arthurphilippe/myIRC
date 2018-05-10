@@ -12,11 +12,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "client/client.h"
+#include "handle/server.h"
+#include "client/cmd.h"
 
-static int	set_fd(client_t *client)
+static int set_fd(client_t *client)
 {
 	struct sockaddr_in addr;
-	struct protoent	*pt = getprotobyname("TCP");
+	struct protoent *pt = getprotobyname("TCP");
 	struct hostent *ip = NULL;
 	struct in_addr **serv_char_ip = NULL;
 
@@ -42,7 +44,7 @@ static void client_set_port(client_t *new_client, char *arg)
 	char buf[1024];
 
 	memset(buf, '\0', 1024);
-	tmp = extract_cmd_arg(arg, ":");
+	tmp = client_cmd_extract_arg(arg, ":");
 	if (tmp == NULL)
 		new_client->port = 6667;
 	else {
@@ -57,19 +59,21 @@ static void client_set_port(client_t *new_client, char *arg)
 	}
 }
 
-client_t	*client_set_server_info(char *arg)
+int manager_connect_to_server(manager_t *manager, char *arg)
 {
 	client_t *new_client = malloc(sizeof(client_t));
 
 	if (!new_client)
-		return (ret_null_error("malloc: ", MALLOC_FAIL, NULL));
+		return (ret_int_error(-1, "malloc: ", MALLOC_FAIL, NULL));
 	memset(new_client, '\0', sizeof(client_t));
-	new_client->serv_ip = extract_command(arg, ":");
+	new_client->serv_ip = client_cmd_extract_name(arg, ":");
 	client_set_port(new_client, arg);
 	if (set_fd(new_client) == RET_ERR) {
 		free(new_client->serv_ip);
 		free(new_client);
-		return (NULL);
+		return (-1);
 	}
-	return (new_client);
+	manager->m_data = new_client;
+	handle_server_create(manager, new_client->fd);
+	return (0);
 }

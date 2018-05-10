@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "client/client.h"
+#include "client/cmd.h"
 
 void remove_carriage_ret(char *str)
 {
@@ -20,26 +21,7 @@ void remove_carriage_ret(char *str)
 	}
 }
 
-client_t *client_check_connect_serv(char *user_cmd)
-{
-	client_t *client = NULL;
-	char *client_cmd = NULL;
-
-	client_cmd = extract_command(user_cmd, " ");
-	if (client_cmd == NULL || (strlen(client_cmd) < 6)) {
-		if (client_cmd != NULL)
-			free(client_cmd);
-		return (NULL);
-	}
-	if (!strcmp(client_cmd, "/server")) {
-		free(client_cmd);
-		client_cmd = extract_cmd_arg(user_cmd, " ");
-		client = client_set_server_info(client_cmd);
-	}
-	return (client);
-}
-
-char *extract_command(char *str, const char *delim)
+char *client_cmd_extract_name(const char *str, const char *delim)
 {
 	char *tmp;
 	char *dest = malloc(sizeof(char) * (strlen(str) + 1));
@@ -59,7 +41,7 @@ char *extract_command(char *str, const char *delim)
 	return (dest);
 }
 
-char 	*extract_cmd_arg(char *cmd, char *delim)
+char *client_cmd_extract_arg(const char *cmd, char *delim)
 {
 	char *tmp;
 	char *dest = malloc(sizeof(char) * (strlen(cmd) + 1));
@@ -73,9 +55,8 @@ char 	*extract_cmd_arg(char *cmd, char *delim)
 	for (int i = 0; i < 1 && tmp != NULL; i++) {
 		tmp = strtok(NULL, delim);
 	}
-	if (tmp == NULL) {
-		return (cmd);
-	}
+	if (tmp == NULL)
+		return (NULL);
 	memset(dest, '\0', strlen(cmd) + 1);
 	strcpy(dest, tmp);
 	return (dest);

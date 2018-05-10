@@ -14,32 +14,11 @@
 #include <unistd.h>
 #include <signal.h>
 #include "client/client.h"
-
-static int manager_set_entry(manager_t *manager)
-{
-	handle_t *hdl = manager_handle_get_free(manager);
-
-	hdl->h_fd = STDIN_FILENO;
-	hdl->h_type = H_STDIN;
-	hdl->h_read = client_irc;
-	hdl->h_write = NULL;
-	return (MANAGER_RET_OK);
-}
-
-int manager_set_irc_socket(manager_t *manager, int fd)
-{
-	handle_t *hdl = manager_handle_get_free(manager);
-
-	hdl->h_type = H_SERVER;
-	hdl->h_fd = fd;
-	hdl->h_read = client_read_serv;
-	hdl->h_write = NULL;
-	return (MANAGER_RET_OK);
-}
+#include "handle/server.h"
 
 static int manager_set_fd(manager_t *manager)
 {
-	manager_set_entry(manager);
+	handle_stdin_create(manager);
 	return (MANAGER_RET_OK);
 }
 
