@@ -10,6 +10,9 @@
 
 #define CMD_MAX_SIZE 512
 #define USER_CMD_SERVER "/server"
+#define USER_CMD_NICK "/nick"
+#define USER_CMD_LIST "/list"
+#define USER_CMD_PART "/part"
 #define CMD_MAIN_DELIM " "
 
 char	*client_cmd_extract_arg(const char *cmd, char *delim);

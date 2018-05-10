@@ -11,6 +11,7 @@
 	#include <stdbool.h>
 	#include "client_error.h"
 	#include "manager.h"
+	#include "cmd.h"
 
 	#define RET_ERR (-1)
 	#define ANSI_COLOR_RED		"\x1b[31m"
@@ -24,10 +25,18 @@
 typedef enum e_state {
 	NOT_CONNECTED,
 	CONNECTED,
+	UNK_STATE,
 }		state_t;
+
+typedef struct s_cmd {
+	char *cmd_name;
+	state_t state;
+	int (*ptr)(manager_t *, char *);
+}		cmd_t;
 
 typedef struct	s_client {
 	char	*serv_ip;
+	char	nickname[CMD_MAX_SIZE];
 	int	port;
 	int	fd;
 	state_t state;

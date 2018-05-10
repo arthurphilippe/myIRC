@@ -54,7 +54,8 @@ SRCS_CLIENT	=	src/manager/connect_to_server.c \
 			src/handle/stdin_create.c	\
 			src/handle/stdin_read.c		\
 			src/manager/loop.c		\
-			src/client/read_server.c
+			src/client/read_server.c	\
+			src/client/cmd_run.c
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
