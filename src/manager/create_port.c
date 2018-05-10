@@ -18,6 +18,7 @@
 manager_t *manager_create_port(int port)
 {
 	manager_t *manager = manager_create();
+	server_t *serv;
 
 	if (!manager || handle_port_create(manager, port) != MANAGER_RET_OK) {
 		perror("server_port_listen");
@@ -28,6 +29,9 @@ manager_t *manager_create_port(int port)
 		free(manager);
 		return (NULL);
 	}
+	serv = manager->m_data;
+	serv->sv_channels = list_create(manager_channel_destroy);
+	serv->sv_clients = list_create(NULL);
 	manager->m_mode = SERVER;
 	manager->m_delete = manager_delete_port;
 	return (manager);

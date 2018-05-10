@@ -17,5 +17,5 @@ int main()
 	if (!manager)
 		return (84);
 	manager_loop(manager);
-	manager_delete_port(manager);
+	manager_delete(manager);
 }
