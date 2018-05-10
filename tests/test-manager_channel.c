@@ -26,7 +26,7 @@ Test(manager_channel, create) {
 	serv->sv_channels = list_create(manager_channel_destroy);
 	serv->sv_clients = list_create(NULL);
 	cr_assert(serv->sv_channels && serv->sv_clients);
-	manager_channel_create(manager, "main");
+	manager_channel_create(manager, "&main");
 	handle_client_create(manager, 1);
 	handle_client_create(manager, 2);
 	cr_assert(manager->m_handles[0].h_fd == 1);
@@ -36,7 +36,8 @@ Test(manager_channel, create) {
 	cr_assert(serv->sv_channels->l_size == 1);
 	channel_t *channel = serv->sv_channels->l_start->n_data;
 	manager_channel_join(channel, &manager->m_handles[0]);
-	manager_channel_join_by_name(manager, "main", &manager->m_handles[1]);
+	manager_channel_join_by_name(manager, "&main", &manager->m_handles[1]);
+	manager_channel_join_by_name(manager, "#clubdelecture", &manager->m_handles[1]);
 
 	list_iter_t *iter = list_iter_create(channel->ch_clients, FWD);
 	cr_assert_eq(list_iter_access(iter), &manager->m_handles[0]);
