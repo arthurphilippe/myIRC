@@ -11,5 +11,4 @@ client
 vgcore*
 *.log
 
-
 coverage/
