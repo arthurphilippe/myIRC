@@ -57,6 +57,8 @@ static int client_irc_process(manager_t *manager, handle_t *hdl)
 		return (RET_ERR);
 	if (len > 0)
 		remove_carriage_ret(buf);
+	printf("%s\n", buf);
+	printf("%sazrzr\n", buf);
 	dprintf(client->fd, "%s\r\n", buf);
 	return (0);
 }
