@@ -1,12 +1,14 @@
 server
+client
 !src/server
 !include/server
+!src/client
+!include/client
 *.o
 *~
 *.gch
 *.out
 vgcore*
 *.log
-
 
 coverage/

@@ -5,8 +5,8 @@
 ** client
 */
 
-#ifndef CLIENT_H_
-	#define CLIENT_H_
+#ifndef HANDLE_CLIENT_H_
+	#define HANDLE_CLIENT_H_
 
 	#include "list.h"
 
@@ -15,4 +15,4 @@ typedef struct	s_handle_client {
 	list_t	*hc_channels;
 }		handle_client_t;
 
-#endif /* !CLIENT_H_ */
+#endif /* !HANDLE_CLIENT_H_ */

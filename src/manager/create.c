@@ -37,26 +37,3 @@ manager_t *manager_create()
 	signal(SIGINT, upon_signal);
 	return (manager);
 }
-
-/*
-** Creates a server with an active listening port
-*/
-manager_t *manager_create_port(int port)
-{
-	manager_t *manager = manager_create();
-
-	if (!manager || handle_port_create(manager, port) != MANAGER_RET_OK) {
-		perror("server_port_listen");
-		return (NULL);
-	}
-	manager->m_data = malloc(sizeof(server_t));
-	if (!manager->m_data) {
-		free(manager);
-		return (NULL);
-	}
-	server_t *serv = manager->m_data;
-	serv->sv_channels = list_create(manager_channel_destroy);
-	serv->sv_clients = list_create(NULL);
-	manager->m_mode = SERVER;
-	return (manager);
-}

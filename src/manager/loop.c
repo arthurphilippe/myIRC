@@ -29,7 +29,8 @@ static int prepare_for_select(manager_t *manager, fd_set *fd_read)
 static void read_on_set_fd(manager_t *sv, fd_set *fd_read)
 {
 	for (unsigned int i = 0; i < MAX_HANDLES; i++) {
-		if (FD_ISSET(sv->m_handles[i].h_fd, fd_read))
+		if (FD_ISSET(sv->m_handles[i].h_fd, fd_read)
+			&& sv->m_handles[i].h_type != H_FREE)
 			sv->m_handles[i].h_read(sv, &sv->m_handles[i]);
 	}
 }

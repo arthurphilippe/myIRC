@@ -47,6 +47,7 @@ typedef struct		s_manager {
 	void		*m_data;
 	manager_mode_t	m_mode;
 	bool		m_live;
+	void		(*m_delete)();
 }			manager_t;
 
 manager_t	*manager_create();
@@ -54,6 +55,9 @@ void		manager_delete(manager_t *manager);
 void		manager_delete_port(manager_t *manager);
 manager_t	*manager_create_port(int port);
 void		manager_loop(manager_t *manager);
+manager_t	*manager_create_connect();
+void		manager_delete_connect(manager_t *manager);
+void		manager_delete_port(manager_t *manager);
 
 void handle_port_read(manager_t *manager, handle_t *port_hdl);
 void handle_client_read(manager_t *manager, handle_t *port_hdl);
@@ -67,5 +71,6 @@ void	handle_client_read(manager_t *manager, handle_t *client_hdl);
 int	handle_client_create(manager_t *manager, int sock);
 void	handle_client_delete(manager_t *manager, handle_t *client_hdl);
 
+int manager_connect_to_server(manager_t *manager, char *arg);
 
 #endif /* !manager_H_ */
