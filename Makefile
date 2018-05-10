@@ -40,9 +40,9 @@ MAIN_CLIENT	=	src/client/main.c
 
 SRCS_CLIENT	=	src/manager/connect_to_server.c \
 			src/manager/create.c		\
+			src/manager/create_connect.c	\
 			src/manager/handle_get.c	\
 			src/manager/delete.c		\
-			src/client/create.c		\
 			src/client/error.c		\
 			src/client/command.c		\
 			src/handle/server_create.c	\
