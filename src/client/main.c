@@ -20,5 +20,6 @@ int main(void)
 	manager_t *manager = manager_create_connect();
 	manager_loop(manager);
 	print_usage();
+	manager_delete(manager);
 	return (0);
 }
