@@ -10,16 +10,20 @@
 #include <stdlib.h>
 #include "manager.h"
 #include "handle/client.h"
+#include "server.h"
 
 void handle_client_delete(manager_t *manager, handle_t *client_hdl)
 {
 	handle_client_t *data = client_hdl->h_data;
 
-	printf("%d: Connection closed\n", client_hdl->h_fd);
-	close(client_hdl->h_fd);
+	if (client_hdl->h_fd > 2) {
+		printf("%d: Connection closed\n", client_hdl->h_fd);
+		close(client_hdl->h_fd);
+	}
 	client_hdl->h_type = H_FREE;
-	free(data->hc_nickname);
+	free(data->hc_nick);
 	list_destroy(data->hc_channels);
+	manager_client_remove(manager, client_hdl);
 	free(data);
 	manager->m_live = false;
 }

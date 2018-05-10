@@ -23,12 +23,15 @@ SRCS		=	src/manager/create.c		\
 			src/manager/delete.c		\
 			src/manager/channel_join.c	\
 			src/manager/channel_leave.c	\
+			src/manager/channel_destroy.c	\
+			src/manager/channel_create.c	\
 			src/manager/client.c	\
 			src/handle/port_read.c		\
 			src/handle/port_create.c	\
 			src/handle/client_create.c	\
 			src/handle/client_read.c	\
 			src/handle/client_delete.c	\
+			src/handle/client_set_nick.c	\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\
@@ -63,7 +66,10 @@ OBJS_CLIENT	=	$(SRCS_CLIENT:.c=.o)
 
 TEST		=	unit_tests.out
 
-SRCS_TEST	=	tests/test-list.c
+SRCS_TEST	=	tests/test-list.c	\
+			tests/test-handle_client.c \
+			tests/test-manager_client.c	\
+			tests/test-manager_channel.c
 
 SRCS_TEST	+=	$(OBJS)
 
@@ -84,6 +90,7 @@ debug: CFLAGS += -ggdb
 debug: fclean
 debug: $(NAME) $(NAME_CLIENT)
 
+tests: CFLAGS += -ggdb
 tests: $(TEST) $(NAME)
 
 tests_run: CC=gcc --coverage
