@@ -17,6 +17,7 @@ MAIN		=	src/main.c
 
 SRCS		=	src/manager/create.c		\
 			src/manager/create_port.c	\
+			src/manager/delete_port.c	\
 			src/manager/handle_get.c	\
 			src/manager/loop.c		\
 			src/manager/delete.c		\
@@ -41,6 +42,7 @@ MAIN_CLIENT	=	src/client/main.c
 SRCS_CLIENT	=	src/manager/connect_to_server.c \
 			src/manager/create.c		\
 			src/manager/create_connect.c	\
+			src/manager/delete_connect.c	\
 			src/manager/handle_get.c	\
 			src/manager/delete.c		\
 			src/client/error.c		\

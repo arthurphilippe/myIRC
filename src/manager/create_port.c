@@ -29,5 +29,6 @@ manager_t *manager_create_port(int port)
 		return (NULL);
 	}
 	manager->m_mode = SERVER;
+	manager->m_delete = manager_delete_port;
 	return (manager);
 }

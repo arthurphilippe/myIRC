@@ -55,8 +55,10 @@ char *client_cmd_extract_arg(const char *cmd, char *delim)
 	for (int i = 0; i < 1 && tmp != NULL; i++) {
 		tmp = strtok(NULL, delim);
 	}
-	if (tmp == NULL)
+	if (tmp == NULL) {
+		free(dest);
 		return (NULL);
+	}
 	memset(dest, '\0', strlen(cmd) + 1);
 	strcpy(dest, tmp);
 	return (dest);

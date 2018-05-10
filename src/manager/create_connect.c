@@ -19,5 +19,6 @@ manager_t *manager_create_connect()
 	handle_stdin_create(manager);
 	manager->m_data = NULL;
 	manager->m_mode = CLIENT;
+	manager->m_delete = manager_delete_connect;
 	return (manager);
 }

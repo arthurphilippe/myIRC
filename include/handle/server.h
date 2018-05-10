@@ -5,8 +5,8 @@
 ** server
 */
 
-#ifndef SERVER_H_
-	#define SERVER_H_
+#ifndef HANDLE_SERVER_H_
+	#define HANDLE_SERVER_H_
 
 	#include "manager.h"
 
@@ -15,4 +15,4 @@ int handle_stdin_create(manager_t *manager);
 void handle_stdin_read(manager_t *manager, handle_t *hdl);
 void client_read_serv(manager_t *manager, handle_t *client_hdl);
 
-#endif /* !SERVER_H_ */
+#endif /* !HANDLE_SERVER_H_ */
