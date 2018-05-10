@@ -12,6 +12,8 @@
 void manager_channel_destroy(void *ptr)
 {
 	channel_t *chan = ptr;
+
 	list_destroy(chan->ch_clients);
 	free(chan->ch_name);
+	free(ptr);
 }

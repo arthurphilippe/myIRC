@@ -5,6 +5,8 @@
 ** channel_create
 */
 
+#include <stdlib.h>
+#include <string.h>
 #include "manager.h"
 #include "server.h"
 

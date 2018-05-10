@@ -5,6 +5,7 @@
 ** channel_join
 */
 
+#include <stdlib.h>
 #include <string.h>
 #include "manager.h"
 #include "server.h"
@@ -21,6 +22,7 @@ int manager_channel_join_by_name(manager_t *manager,
 		&& strcmp(chan->ch_name, chanstr) != 0) {
 		list_iter_next(iter);
 	}
+	free(iter);
 	if (chan)
 		return (manager_channel_join(chan, client));
 	return (-1);
