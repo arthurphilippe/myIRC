@@ -72,7 +72,7 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 	client_set_port(new_client, arg);
 	if (set_fd(new_client) == RET_ERR) {
 		free(new_client->serv_ip);
-		free(new_client);
+		new_client->serv_ip = NULL;
 		return (-1);
 	}
 	manager->m_data = new_client;
