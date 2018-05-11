@@ -27,7 +27,6 @@ static int push_back_substr(list_t *list, const char *str,
 list_t *stolist(const char *str, const char *spacers)
 {
 	list_t *list = list_create(free);
-	char *tmp = NULL;
 	int i = 0;
 	int ret;
 
