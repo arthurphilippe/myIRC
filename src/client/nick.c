@@ -22,6 +22,7 @@ int client_cmd_nick(manager_t *manager, char *arg)
 		dprintf(client->fd, "%s %s\r\n", "NICK", arg);
 		dprintf(client->fd, "%s %s %s %s %s\r\n", "USER",
 			arg, "LOCAL_COMPUTER", client->serv_ip, arg);
+		client->state = CONNECTED;
 	}
 	return (0);
 }

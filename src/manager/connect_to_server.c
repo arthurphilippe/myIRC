@@ -34,7 +34,6 @@ static int set_fd(client_t *client)
 						sizeof(addr)) == -1)
 		return (ret_int_error(RET_ERR, "connect failed: ",
 				"can't connect to", " the specified server"));
-	client->state = CONNECTED;
 	return (0);
 }
 
@@ -77,5 +76,6 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 	}
 	manager->m_data = new_client;
 	handle_server_create(manager, new_client->fd);
+	client_cmd_nick(manager, new_client->nickname);
 	return (0);
 }

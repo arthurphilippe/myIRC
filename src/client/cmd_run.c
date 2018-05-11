@@ -18,6 +18,7 @@ const cmd_t cmd_map[] = {
 	{CLIENT_CMD_EXIT, NOT_CONNECTED, client_cmd_quit},
 	{CLIENT_CMD_JOIN, CONNECTED, client_cmd_join},
 	{CLIENT_CMD_PART, CONNECTED, client_cmd_part},
+	{CLIENT_CMD_LIST, CONNECTED, client_cmd_list},
 	{"", UNK_STATE, NULL}
 };
 
