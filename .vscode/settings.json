@@ -13,6 +13,8 @@
 		"stdlib.h": "c",
 		"sstream": "c",
 		"client.h": "c",
-		"cmd.h": "c"
+		"cmd.h": "c",
+		"stolist.h": "c",
+		"list.h": "c"
 	}
 }
