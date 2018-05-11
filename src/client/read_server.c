@@ -31,5 +31,6 @@ void client_read_serv(manager_t *manager, handle_t *client_hdl)
 	buf[r] = '\0';
 	dprintf(1,
 		ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
-	client_cmd_answer(manager, buf);
+	if (strlen(buf) > 0 && strlen(buf) < CMD_MAX_SIZE)
+		client_cmd_answer(manager, buf);
 }
