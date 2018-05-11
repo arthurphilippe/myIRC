@@ -12,3 +12,5 @@ vgcore*
 *.log
 
 coverage/
+wiki/
+test_connection_myirc

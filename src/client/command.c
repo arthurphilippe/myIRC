@@ -16,7 +16,7 @@ void remove_carriage_ret(char *str)
 	int i = strlen(str);
 
 	if (i > 0) {
-		if ((str[i - 1] == '\n'))
+		if (str[i - 1] == '\n')
 			str[i - 1] = '\0';
 	}
 }

@@ -32,6 +32,11 @@ SRCS		=	src/manager/create.c		\
 			src/handle/client_read.c	\
 			src/handle/client_delete.c	\
 			src/handle/client_set_nick.c	\
+			src/irc/cmd_get_name.c		\
+			src/irc/cmd_strip_to_args.c	\
+			src/irc/cmd_run.c		\
+			src/irc/cmd/user.c		\
+			src/irc/cmd/nick.c		\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\
@@ -70,7 +75,8 @@ SRCS_TEST	=	tests/test-list.c	\
 			tests/test-handle_client.c \
 			tests/test-manager_client.c	\
 			tests/test-manager_channel.c	\
-			tests/test-stolist.c
+			tests/test-stolist.c		\
+			tests/test-irc_cmd.c
 
 SRCS_TEST	+=	$(OBJS)
 
