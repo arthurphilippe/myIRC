@@ -48,7 +48,7 @@ static int wrap_push_back(list_t *list, const char *str,
 				const char *spacers, int loop)
 {
 	if (loop && str[0] == ':')
-		return (push_back_substr(list, &str[1], ""));
+		return (push_back_substr(list, &str[1], "") + 1);
 	return (push_back_substr(list, str, spacers));
 }
 

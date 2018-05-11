@@ -22,15 +22,17 @@ static int run_map_cmd(manager_t *manager, handle_t *hdl, list_t *cmd)
 		return (0);
 	irc_cmd_strip_to_args(cmd);
 	for (unsigned int i = 0; cmd_map[i].ic_name; i++) {
-		if (strcmp(name_cmd, cmd_map[i].ic_name) == 0) {
-
+		if (strcasecmp(name_cmd, cmd_map[i].ic_name) == 0
+			&& cmd_map[i].ic_func) {
+			cmd_map[i].ic_func(manager, hdl, cmd);
 		}
 	}
+	return (0);
 }
 
 void irc_cmd_run(manager_t *manager, handle_t *hdl, const char *cmd)
 {
-	list_t *split_cmd = stolist(cmd, " ");
+	list_t *split_cmd = stolist_spe_irc(cmd, " ");
 
 	if (!split_cmd)
 		return;

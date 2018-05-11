@@ -16,6 +16,8 @@ typedef struct	s_irc_cmd {
 	void	(*ic_func)(manager_t *, handle_t *, list_t *args);
 }		irc_cmd_t;
 
+void irc_cmd_run(manager_t *manager, handle_t *hdl, const char *cmd);
+
 char *irc_cmd_get_name(list_t *split_cmd);
 void irc_cmd_strip_to_args(list_t *cmd);
 
