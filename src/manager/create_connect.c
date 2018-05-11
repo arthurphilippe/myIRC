@@ -5,8 +5,11 @@
 ** create_connect
 */
 
+#include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "handle/server.h"
+#include "client/client.h"
 
 manager_t *manager_create_connect()
 {
@@ -17,8 +20,13 @@ manager_t *manager_create_connect()
 		return (NULL);
 	}
 	handle_stdin_create(manager);
-	manager->m_data = NULL;
 	manager->m_mode = CLIENT;
+	manager->m_data = malloc(sizeof(client_t));
+	if (!manager->m_data) {
+		free(manager);
+		return (NULL);
+	}
+	memset(manager->m_data, '\0', sizeof(client_t));
 	manager->m_delete = manager_delete_connect;
 	return (manager);
 }
