@@ -37,10 +37,26 @@ typedef struct s_cmd {
 typedef struct	s_client {
 	char	*serv_ip;
 	char	nickname[CMD_MAX_SIZE];
+	char	username[CMD_MAX_SIZE];
 	int	port;
 	int	fd;
 	state_t state;
 }		client_t;
+
+/*
+**	Client commands
+*/
+int client_cmd_quit(manager_t *manager, char *arg);
+int client_cmd_nick(manager_t *manager, char *arg);
+int client_cmd_user(manager_t *manager, char *arg);
+int client_cmd_run(manager_t *manager, const char *cmd);
+
+/*
+**	Client automatic answer
+*/
+int client_cmd_answer(manager_t *manager, const char *cmd);
+int client_cmd_pong(manager_t *manager, char *arg);
+
 
 /*
 **	Sides Functions
