@@ -43,23 +43,24 @@ char *client_cmd_extract_name(const char *str, const char *delim)
 
 char *client_cmd_extract_arg(const char *cmd, char *delim)
 {
-	char *tmp;
-	char *dest = malloc(sizeof(char) * (strlen(cmd) + 1));
+	char *tmp = NULL;
+	char *dest = malloc(sizeof(char) * CMD_MAX_SIZE);
 	char s[1024];
+	int u = 0;
+	int len;
 
-	if (dest == NULL)
-		return (NULL);
 	memset(s, '\0', 1024);
+	memset(dest, '\0', CMD_MAX_SIZE);
 	strcpy(s, cmd);
+	if (!dest)
+		return (NULL);
 	tmp = strtok (s, delim);
-	for (int i = 0; i < 1 && tmp != NULL; i++) {
-		tmp = strtok(NULL, delim);
-	}
-	if (tmp == NULL) {
+	if (tmp == NULL || (len = strlen(tmp)) <= 0) {
 		free(dest);
 		return (NULL);
 	}
-	memset(dest, '\0', strlen(cmd) + 1);
-	strcpy(dest, tmp);
+	for (int i = len + 1; cmd[i] != '\0'; i++) {
+		dest[u++] = cmd[i];
+	}
 	return (dest);
 }
