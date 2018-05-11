@@ -41,3 +41,23 @@ Test(irc_cmd, strip_to_args_noprefix) {
 	free(iter);
 	list_destroy(cmd);
 }
+
+Test(irc_cmd, get_name_no_prefix) {
+	list_t *cmd = stolist(
+		"name voiture otoctone", " ");
+	char *name_cmd = irc_cmd_get_name(cmd);
+
+	cr_assert_str_eq(name_cmd, "name");
+	free(name_cmd);
+	list_destroy(cmd);
+}
+
+Test(irc_cmd, get_name_prefix) {
+	list_t *cmd = stolist(
+		":qsdiofjqsmiojazemroifjqzemrlfj name voiture otoctone", " ");
+	char *name_cmd = irc_cmd_get_name(cmd);
+
+	cr_assert_str_eq(name_cmd, "name");
+	free(name_cmd);
+	list_destroy(cmd);
+}
