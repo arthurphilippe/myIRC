@@ -12,11 +12,11 @@
 #include "client/cmd.h"
 
 const cmd_t cmd_map[] = {
-	{USER_CMD_SERVER, NOT_CONNECTED, manager_connect_to_server},
-	{USER_CMD_NICK, NOT_CONNECTED, client_cmd_nick},
-	{USER_CMD_QUIT, NOT_CONNECTED, client_cmd_quit},
-	{USER_CMD_EXIT, NOT_CONNECTED, client_cmd_quit},
-//	{USER_CMD_USER, NOT_CONNECTED, client_cmd_user},
+	{CLIENT_CMD_SERVER, NOT_CONNECTED, manager_connect_to_server},
+	{CLIENT_CMD_NICK, NOT_CONNECTED, client_cmd_nick},
+	{CLIENT_CMD_QUIT, NOT_CONNECTED, client_cmd_quit},
+	{CLIENT_CMD_EXIT, NOT_CONNECTED, client_cmd_quit},
+//	{CLIENT_CMD_USER, NOT_CONNECTED, client_cmd_user},
 	{"", UNK_STATE, NULL}
 };
 
@@ -38,8 +38,8 @@ int client_cmd_run(manager_t *manager, const char *cmd)
 					&& launch == false ; i++) {
 		if (!strcmp(cmd_map[i].cmd_name, cmd_name)) {
 			cmd_arg = client_cmd_extract_arg(cmd, CMD_MAIN_DELIM);
-			cmd_map[i].ptr(manager, cmd_arg);
-			launch = true;
+			if (!cmd_map[i].ptr(manager, cmd_arg))
+				launch = true;
 		}
 	}
 	if (launch == false && client->fd == 0) {

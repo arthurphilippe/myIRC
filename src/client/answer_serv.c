@@ -26,9 +26,9 @@ int client_cmd_answer(manager_t *manager, const char *cmd)
 			cmd_arg = client_cmd_extract_arg(cmd, " ");
 			if (!cmd_arg)
 				break;
-			cmd_answer_map[i].ptr(manager, cmd_arg);
+			if (!cmd_answer_map[i].ptr(manager, cmd_arg))
+				launch = true;
 			free(cmd_arg);
-			launch = true;
 			break;
 		}
 	}

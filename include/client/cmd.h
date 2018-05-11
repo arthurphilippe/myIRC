@@ -9,13 +9,14 @@
 	#define CMD_H_
 
 #define CMD_MAX_SIZE 512
-#define USER_CMD_SERVER "/server"
-#define USER_CMD_NICK "/nick"
-#define USER_CMD_LIST "/list"
-#define USER_CMD_QUIT "/quit"
-#define USER_CMD_EXIT "/exit"
-#define USER_CMD_PART "/part"
-#define USER_CMD_USER "/user"
+#define CLIENT_CMD_SERVER "/server"
+#define CLIENT_CMD_NICK "/nick"
+#define CLIENT_CMD_LIST "/list"
+#define CLIENT_CMD_QUIT "/quit"
+#define CLIENT_CMD_EXIT "/exit"
+#define CLIENT_CMD_PART "/part"
+#define CLIENT_CMD_USER "/user"
+#define CLIENT_CMD_JOIN "/join"
 #define CMD_MAIN_DELIM " "
 
 /*
