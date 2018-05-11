@@ -61,11 +61,13 @@ static void client_set_port(client_t *new_client, char *arg)
 
 int manager_connect_to_server(manager_t *manager, char *arg)
 {
-	client_t *new_client = malloc(sizeof(client_t));
+	client_t *new_client = manager->m_data;
 
+	if (!arg)
+		return(ret_int_client(0, "USAGE: /server", "$host[:port]",
+								""));
 	if (!new_client)
 		return (ret_int_error(-1, "malloc: ", MALLOC_FAIL, NULL));
-	memset(new_client, '\0', sizeof(client_t));
 	new_client->serv_ip = client_cmd_extract_name(arg, ":");
 	client_set_port(new_client, arg);
 	if (set_fd(new_client) == RET_ERR) {
@@ -75,6 +77,5 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 	}
 	manager->m_data = new_client;
 	handle_server_create(manager, new_client->fd);
-	free(arg);
 	return (0);
 }
