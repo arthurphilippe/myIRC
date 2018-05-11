@@ -8,7 +8,7 @@
 #ifndef CMD_H_
 	#define CMD_H_
 
-#define CMD_MAX_SIZE 512
+#define CMD_MAX_SIZE 510
 #define CLIENT_CMD_SERVER "/server"
 #define CLIENT_CMD_NICK "/nick"
 #define CLIENT_CMD_LIST "/list"

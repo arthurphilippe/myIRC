@@ -50,7 +50,6 @@ char *client_cmd_extract_arg(const char *cmd, char *delim)
 	int len;
 
 	memset(s, '\0', 1024);
-	memset(dest, '\0', CMD_MAX_SIZE);
 	strcpy(s, cmd);
 	if (!dest)
 		return (NULL);
@@ -59,6 +58,7 @@ char *client_cmd_extract_arg(const char *cmd, char *delim)
 		free(dest);
 		return (NULL);
 	}
+	memset(dest, '\0', CMD_MAX_SIZE);
 	for (int i = len + 1; cmd[i] != '\0'; i++) {
 		dest[u++] = cmd[i];
 	}

@@ -14,6 +14,8 @@
 
 static int names_cmd(char *dest, char *src, int i)
 {
+	if (!strlen(src))
+		return (i);
 	if (src[0] != '#' && src[0] != '&') {
 		return (ret_int_client(i,
 			"/names:", "incorrect syntax on", src));

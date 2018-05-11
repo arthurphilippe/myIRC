@@ -76,6 +76,7 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 	}
 	manager->m_data = new_client;
 	handle_server_create(manager, new_client->fd);
-	client_cmd_nick(manager, new_client->nickname);
+	if (strlen(new_client->nickname))
+		client_cmd_nick(manager, new_client->nickname);
 	return (0);
 }
