@@ -37,9 +37,9 @@ void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg)
 
 	(void) manager;
 	if (arg->l_size < 4) {
-		dprintf(hdl->h_fd, "461  USER :Not enough parameters\n");
+		dprintf(hdl->h_fd, "461  USER :Not enough parameters\r\n");
 	} else if (client->hc_log_level == OK) {
-		dprintf(hdl->h_fd, "462 %s :You may not reregister\n",
+		dprintf(hdl->h_fd, "462 %s :You may not reregister\r\n",
 			client->hc_nick);
 	} else {
 		irc_cmd_user_extract(hdl, arg);

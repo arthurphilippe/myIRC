@@ -21,8 +21,9 @@ char *irc_cmd_get_name(list_t *split_cmd)
 			return (strdup(tmp));
 		}
 		tmp = list_iter_access(iter);
+		free(iter);
+		return (strdup(tmp));
 	}
-	free(iter);
-	return (strdup(tmp));
+	return (NULL);
 }
 

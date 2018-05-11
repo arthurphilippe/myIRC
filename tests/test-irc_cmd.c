@@ -89,6 +89,7 @@ Test(irc_cmd_user, extraction) {
 }
 
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg);
+void irc_cmd_nick(manager_t *manager, handle_t *hdl, list_t *arg);
 
 Test(irc_cmd_user, whole_ok) {
 	list_t *cmd = stolist_spe_irc("cheap noop noop :Jaffar Tram", " ");
@@ -107,7 +108,20 @@ Test(irc_cmd_user, whole_ok) {
 	cr_assert_str_eq(client.hc_realname, "Jaffar Tram");
 	cr_assert_str_eq(client.hc_username, "cheap");
 	cr_assert_eq(client.hc_log_level, USER);
-	client.hc_log_level = NICK;
+	list_destroy(cmd);
+	cmd = stolist_spe_irc("", "");
+	irc_cmd_nick(&manager, &handle, cmd);
+
+	list_destroy(cmd);
+	cmd = stolist_spe_irc("cheapux", "");
+	irc_cmd_nick(&manager, &handle, cmd);
+	irc_cmd_nick(&manager, &handle, cmd);
+	cr_assert_eq(client.hc_log_level, OK);
+
+	client.hc_log_level = NONE;
+	irc_cmd_nick(&manager, &handle, cmd);
+	list_destroy(cmd);
+	cmd = stolist_spe_irc("cheap noop noop :Jaffar Tram", " ");
 	irc_cmd_user(&manager, &handle, cmd);
 	cr_assert_eq(client.hc_log_level, OK);
 	list_destroy(cmd);
