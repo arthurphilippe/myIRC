@@ -19,7 +19,7 @@ static int join_cmd(char *dest, char *src, int i)
 			"/join:", "incorrect syntax on", src));
 	}
 	if (strlen(dest) > 0) {
-		dest[i++] = ' ';
+		dest[i++] = ',';
 	}
 	for (int u = 0; src[u] != '\0'; u++) {
 		dest[i++] = src[u];
