@@ -27,7 +27,7 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	free(iter);
 	if (client->hc_log_level == NONE)
 		client->hc_log_level = USER;
-	else if (client->hc_log_level == NICK)
+	else
 		client->hc_log_level = OK;
 }
 
