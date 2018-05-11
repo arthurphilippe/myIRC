@@ -32,15 +32,45 @@ list_t *stolist(const char *str, const char *spacers)
 
 	if (!list)
 		return (NULL);
-	do {
+	while (str[i]) {
 		ret = push_back_substr(list, &str[i], spacers);
 		if (ret == LIST_ERR) {
 			list_destroy(list);
 			return (NULL);
 		}
 		i += ret;
-		ret = strspn(&str[i], spacers);
-		i += ret;
-	} while (str[i]);
+		i += strspn(&str[i], spacers);
+	}
 	return (list);
 }
+
+static int wrap_push_back(list_t *list, const char *str,
+				const char *spacers, int loop)
+{
+	if (loop && str[0] == ':')
+		return (push_back_substr(list, &str[1], ""));
+	return (push_back_substr(list, str, spacers));
+}
+
+list_t *stolist_spe_irc(const char *str, const char *spacers)
+{
+	list_t *list = list_create(free);
+	int i = 0;
+	int loop = 0;
+	int ret;
+
+	if (!list)
+		return (NULL);
+	while (str[i]) {
+		ret = wrap_push_back(list, &str[i], spacers, loop);
+		if (ret == LIST_ERR) {
+			list_destroy(list);
+			return (NULL);
+		}
+		i += ret;
+		i += strspn(&str[i], spacers);
+		loop++;
+	}
+	return (list);
+}
+
