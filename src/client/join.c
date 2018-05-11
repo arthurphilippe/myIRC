@@ -14,6 +14,10 @@
 
 static int join_cmd(char *dest, char *src, int i)
 {
+	if (src[0] != '#') {
+		return (ret_int_client(i,
+			"/join:", "incorrect syntax on", src));
+	}
 	if (strlen(dest) > 0) {
 		dest[i++] = ' ';
 	}
@@ -55,7 +59,8 @@ int client_cmd_join(manager_t *manager, char *arg)
 	if ((str = client_create_join_cmd(iterator)) == NULL)
 		return (ret_int_client(RET_ERR, "Command join", "failed",
 							"(malloc failed)"));
-	dprintf(client->fd, "%s %s\r\n", CLIENT_CMD_JOIN, str);
+	if (strlen(str) > 0)
+		dprintf(client->fd, "%s %s\r\n", "JOIN", str);
 	free(iterator);
 	free(str);
 	list_destroy(list);
