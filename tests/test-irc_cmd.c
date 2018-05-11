@@ -115,6 +115,7 @@ Test(irc_cmd_user, whole_ok) {
 	list_destroy(cmd);
 	cmd = stolist_spe_irc("cheapux", "");
 	irc_cmd_nick(&manager, &handle, cmd);
+	cr_assert_str_eq(client.hc_nick, "cheapux");
 	irc_cmd_nick(&manager, &handle, cmd);
 	cr_assert_eq(client.hc_log_level, OK);
 
