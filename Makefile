@@ -38,7 +38,7 @@ SRCS		=	src/manager/create.c		\
 			src/list_pop.c			\
 			src/list_iter.c			\
 			src/list_find.c			\
-
+			src/stolist.c
 
 MAIN_CLIENT	=	src/client/main.c
 
@@ -75,7 +75,8 @@ TEST		=	unit_tests.out
 SRCS_TEST	=	tests/test-list.c	\
 			tests/test-handle_client.c \
 			tests/test-manager_client.c	\
-			tests/test-manager_channel.c
+			tests/test-manager_channel.c	\
+			tests/test-stolist.c
 
 SRCS_TEST	+=	$(OBJS)
 
