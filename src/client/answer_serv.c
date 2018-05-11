@@ -23,13 +23,11 @@ int client_cmd_answer(manager_t *manager, const char *cmd)
 
 	for (int i = 0; cmd_answer_map[i].ptr != NULL && launch == false; i++) {
 		if (!strcmp(cmd_answer_map[i].cmd_name, cmd_name)) {
-			cmd_arg = client_cmd_extract_arg(cmd, " ");
-			if (!cmd_arg)
+			if (!(cmd_arg = client_cmd_extract_arg(cmd, " ")))
 				break;
 			if (!cmd_answer_map[i].ptr(manager, cmd_arg))
 				launch = true;
 			free(cmd_arg);
-			break;
 		}
 	}
 	free(cmd_name);
