@@ -14,7 +14,7 @@ int client_cmd_nick(manager_t *manager, char *arg)
 {
 	client_t *client = manager->m_data;
 
-	if (!arg)
+	if (!arg || strlen(arg )< 1)
 		return (ret_int_client(0, "USAGE: /nick", "$nickname", ""));
 	strcpy(client->nickname, arg);
 	strcpy(client->username, arg);

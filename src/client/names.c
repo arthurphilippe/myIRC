@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** myIRC
 ** File description:
-** part
+** names
 */
 
 #include <string.h>
@@ -12,16 +12,11 @@
 #include "manager.h"
 #include "stolist.h"
 
-/*
-**	format the string to a RFC compliant string
-**	taking the destination string, the source
-**	where to start in the destination
-*/
-static int list_cmd(char *dest, char *src, int i)
+static int names_cmd(char *dest, char *src, int i)
 {
 	if (src[0] != '#' && src[0] != '&') {
 		return (ret_int_client(i,
-			"/list:", "incorrect syntax on", src));
+			"/names:", "incorrect syntax on", src));
 	}
 	if (strlen(dest) > 0) {
 		dest[i++] = ',';
@@ -32,11 +27,7 @@ static int list_cmd(char *dest, char *src, int i)
 	return (i);
 }
 
-/*
-**	Read all of the strings in the list
-**	concat all the strings in one char* returned.
-*/
-static char *client_create_list_cmd(list_iter_t *iterator)
+static char *client_create_names_cmd(list_iter_t *iterator)
 {
 	char *str = malloc(sizeof(char) * CMD_MAX_SIZE);
 	char *tmp = NULL;
@@ -49,13 +40,13 @@ static char *client_create_list_cmd(list_iter_t *iterator)
 		tmp = list_iter_access(iterator);
 		if (!tmp)
 			break;
-		i = list_cmd(str, tmp, i);
+		i = names_cmd(str, tmp, i);
 		list_iter_next(iterator);
 	}
 	return (str);
 }
 
-int client_cmd_list(manager_t *manager, char *arg)
+int client_cmd_names(manager_t *manager, char *arg)
 {
 	list_t *list = stolist(arg, " ");
 	client_t *client = manager->m_data;
@@ -63,12 +54,12 @@ int client_cmd_list(manager_t *manager, char *arg)
 	char *str = NULL;
 
 	if (!list || !iterator || client->state == NOT_CONNECTED) {
-		return (ret_int_client(RET_ERR, "Command list", "failed", ""));
+		return (ret_int_client(RET_ERR, "Command names", "failed", ""));
 	}
-	if ((str = client_create_list_cmd(iterator)) == NULL)
-		return (ret_int_client(RET_ERR, "Command list", "failed",
+	if ((str = client_create_names_cmd(iterator)) == NULL)
+		return (ret_int_client(RET_ERR, "Command names", "failed",
 							"(malloc failed)"));
-	dprintf(client->fd, "%s %s\r\n", "LIST", str);
+	dprintf(client->fd, "%s %s\r\n", "NAMES", str);
 	free(iterator);
 	free(str);
 	list_destroy(list);

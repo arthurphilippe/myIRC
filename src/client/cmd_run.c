@@ -19,6 +19,7 @@ const cmd_t cmd_map[] = {
 	{CLIENT_CMD_JOIN, CONNECTED, client_cmd_join},
 	{CLIENT_CMD_PART, CONNECTED, client_cmd_part},
 	{CLIENT_CMD_LIST, CONNECTED, client_cmd_list},
+	{CLIENT_CMD_NAMES, CONNECTED, client_cmd_names},
 	{"", UNK_STATE, NULL}
 };
 
