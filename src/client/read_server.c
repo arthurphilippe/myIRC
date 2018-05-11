@@ -28,5 +28,8 @@ void client_read_serv(manager_t *manager, handle_t *client_hdl)
 		exit(0);
 		return;
 	}
-	dprintf(1, ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
+	buf[r] = '\0';
+	dprintf(1,
+		ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
+	client_cmd_answer(manager, buf);
 }
