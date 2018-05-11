@@ -11,6 +11,7 @@
 #include "stolist.h"
 
 const irc_cmd_t cmd_map[] = {
+	{"USER", irc_cmd_user},
 	{NULL, NULL},
 };
 
