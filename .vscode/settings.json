@@ -15,6 +15,7 @@
 		"client.h": "c",
 		"cmd.h": "c",
 		"stolist.h": "c",
-		"list.h": "c"
+		"list.h": "c",
+		"initializer_list": "c"
 	}
 }

@@ -51,6 +51,7 @@ int client_cmd_nick(manager_t *manager, char *arg);
 int client_cmd_user(manager_t *manager, char *arg);
 int client_cmd_join(manager_t *manager, char *arg);
 int client_cmd_part(manager_t *manager, char *arg);
+int client_cmd_list(manager_t *manager, char *arg);
 int client_cmd_run(manager_t *manager, const char *cmd);
 
 /*

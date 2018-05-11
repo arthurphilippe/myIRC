@@ -69,7 +69,8 @@ SRCS_CLIENT	=	src/manager/connect_to_server.c \
 			src/list_pop.c			\
 			src/list_iter.c			\
 			src/list_find.c			\
-			src/client/part.c
+			src/client/part.c		\
+			src/client/list.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
