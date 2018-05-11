@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 #include "manager.h"
 #include "handle/client.h"
 #include "irc/cmd.h"
@@ -22,7 +23,10 @@ void handle_client_read(manager_t *manager, handle_t *client_hdl)
 	{
 		buf[r] = '\0';
 		printf("%s: %s\n", data->hc_nick, buf);
-		irc_cmd_run(manager, client_hdl, buf);
+		if (strncmp("QUIT", buf, 4))
+			handle_client_delete(manager, client_hdl);
+		else
+			irc_cmd_run(manager, client_hdl, buf);
 	} else {
 		handle_client_delete(manager, client_hdl);
 	}

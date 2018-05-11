@@ -23,8 +23,12 @@ void irc_cmd_nick_extract(handle_t *hdl, list_t *arg)
 	free(iter);
 	if (client->hc_log_level == NONE)
 		client->hc_log_level = NICK;
-	else if (client->hc_log_level == USER)
+	else if (client->hc_log_level == USER) {
 		client->hc_log_level = OK;
+		dprintf(hdl->h_fd, "PING :tartiflette\r\n");
+		dprintf(hdl->h_fd, ":server 001 %s patate\r\n",
+			client->hc_nick);
+	}
 }
 
 void irc_cmd_nick(manager_t *manager, handle_t *hdl, list_t *arg)

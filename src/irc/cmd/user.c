@@ -27,8 +27,10 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	free(iter);
 	if (client->hc_log_level == NONE)
 		client->hc_log_level = USER;
-	else
+	else {
+		dprintf(hdl->h_fd, "PING :tartiflette\r\n");
 		client->hc_log_level = OK;
+	}
 }
 
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg)

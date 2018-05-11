@@ -13,3 +13,4 @@ vgcore*
 
 coverage/
 wiki/
+test_connection_myirc
