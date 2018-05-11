@@ -19,9 +19,9 @@ int client_cmd_nick(manager_t *manager, char *arg)
 	strcpy(client->nickname, arg);
 	strcpy(client->username, arg);
 	if (client->fd > 0) {
-	dprintf(client->fd, "%s %s\r\n", "NICK", arg);
-	dprintf(client->fd, "%s %s %s %s %s\r\n", "USER",
-		arg, "LOCAL_COMPUTER", client->serv_ip, arg);
+		dprintf(client->fd, "%s %s\r\n", "NICK", arg);
+		dprintf(client->fd, "%s %s %s %s %s\r\n", "USER",
+			arg, "LOCAL_COMPUTER", client->serv_ip, arg);
 	}
 	return (0);
 }
