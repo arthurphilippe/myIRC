@@ -28,6 +28,7 @@ void irc_cmd_strip_to_args(list_t *cmd);
 ** Actual IRC commands
 */
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg);
+void irc_cmd_nick(manager_t *manager, handle_t *hdl, list_t *arg);
 
 
 #endif /* !IRC_CMD_H_ */
