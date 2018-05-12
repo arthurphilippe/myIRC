@@ -14,9 +14,12 @@
 
 static void init_data(handle_client_t *data)
 {
+	data->hc_log_level = NONE;
 	data->hc_nick = strdup("anon");
+	data->hc_realname = NULL;
+	data->hc_username = NULL;
 	data->hc_channels = list_create(NULL);
-	data->hc_cmd_buff = list_create(NULL);
+	data->hc_cmd_buff = list_create(free);
 }
 
 int handle_client_create(manager_t *manager, int sock)

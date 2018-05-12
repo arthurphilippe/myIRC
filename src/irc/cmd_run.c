@@ -28,6 +28,7 @@ static int run_map_cmd(manager_t *manager, handle_t *hdl, list_t *cmd)
 			cmd_map[i].ic_func(manager, hdl, cmd);
 		}
 	}
+	free(name_cmd);
 	return (0);
 }
 
@@ -38,4 +39,5 @@ void irc_cmd_run(manager_t *manager, handle_t *hdl, const char *cmd)
 	if (!split_cmd)
 		return;
 	run_map_cmd(manager, hdl, split_cmd);
+	list_destroy(split_cmd);
 }
