@@ -23,10 +23,13 @@ void client_read_serv(manager_t *manager, handle_t *client_hdl)
 	memset(buf, '\0', 4096);
 	(void) manager;
 	if ((r = read(client_hdl->h_fd, buf, 4096)) <= 0) {
-		/* Delete something **/
 		printf(ANSI_COLOR_BLUE"EXIT\n"ANSI_COLOR_RESET);
-		exit(0);
+		manager->m_live = false;
 		return;
 	}
-	dprintf(1, ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
+	buf[r] = '\0';
+	dprintf(1,
+		ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
+	if (strlen(buf) > 0 && strlen(buf) < CMD_MAX_SIZE)
+		client_cmd_answer(manager, buf);
 }

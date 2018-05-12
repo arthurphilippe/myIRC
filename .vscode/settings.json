@@ -13,6 +13,5 @@
 		"stdlib.h": "c",
 		"sstream": "c",
 		"client.h": "c",
-		"typeinfo": "c"
 	}
 }

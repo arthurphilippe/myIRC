@@ -14,7 +14,8 @@ void manager_delete_connect(manager_t *manager)
 	client_t *client = manager->m_data;
 
 	if (client) {
-		free(client->serv_ip);
+		if (client->serv_ip)
+			free(client->serv_ip);
 		free(client);
 	}
 }
