@@ -75,7 +75,9 @@ Test(irc_cmd_user, extraction) {
 	client.hc_nick = NULL;
 	client.hc_realname = NULL;
 	client.hc_username = NULL;
+	client.hc_cmd_buff = NULL;
 	client.hc_log_level = NONE;
+	cr_assert(cmd);
 	irc_cmd_user_extract(&handle, cmd);
 	cr_assert_str_eq(client.hc_realname, "Jaffar Tram");
 	cr_assert_str_eq(client.hc_username, "cheap");
@@ -98,11 +100,13 @@ Test(irc_cmd_user, whole_ok) {
 	manager_t manager;
 	handle_client_t client;
 
+	cr_assert(cmd);
 	cr_expect_eq(cmd->l_size, 4);
 	handle.h_data = &client;
 	client.hc_nick = NULL;
 	client.hc_realname = NULL;
 	client.hc_username = NULL;
+	client.hc_cmd_buff = NULL;
 	client.hc_log_level = NONE;
 	irc_cmd_user(&manager, &handle, cmd);
 	cr_assert_str_eq(client.hc_realname, "Jaffar Tram");
@@ -138,11 +142,13 @@ Test(irc_cmd_user, whole_param_err) {
 	manager_t manager;
 	handle_client_t client;
 
+	cr_assert(cmd);
 	cr_expect_eq(cmd->l_size, 3);
 	handle.h_data = &client;
 	client.hc_nick = NULL;
 	client.hc_realname = NULL;
 	client.hc_username = NULL;
+	client.hc_cmd_buff = NULL;
 	client.hc_log_level = NONE;
 	irc_cmd_user(&manager, &handle, cmd);
 	cr_assert_eq(client.hc_realname, NULL);
@@ -161,11 +167,13 @@ Test(irc_cmd_user, whole_param_relog) {
 	manager_t manager;
 	handle_client_t client;
 
+	cr_assert(cmd);
 	cr_expect_eq(cmd->l_size, 4);
 	handle.h_data = &client;
 	client.hc_nick = NULL;
 	client.hc_realname = NULL;
 	client.hc_username = NULL;
+	client.hc_cmd_buff = NULL;
 	client.hc_log_level = NONE;
 	irc_cmd_user(&manager, &handle, cmd);
 	cr_assert_str_eq(client.hc_realname, "Jaffar Tram");

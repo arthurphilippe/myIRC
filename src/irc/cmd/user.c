@@ -20,9 +20,10 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	if (!iter)
 		return;
 	free(client->hc_username);
-	client->hc_username = strdup(list_iter_next(iter));
+	client->hc_username = strdup(list_iter_access(iter));
 	if (!client->hc_nick)
-		client->hc_nick = strdup(list_iter_next(iter));
+		client->hc_nick = strdup(list_iter_access(iter));
+	list_iter_next(iter);
 	list_iter_next(iter);
 	list_iter_next(iter);
 	free(client->hc_realname);
