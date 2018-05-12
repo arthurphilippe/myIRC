@@ -37,6 +37,7 @@ SRCS		=	src/manager/create.c		\
 			src/irc/cmd_run.c		\
 			src/irc/cmd/user.c		\
 			src/irc/cmd/nick.c		\
+			src/irc/msg/welcome.c		\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\

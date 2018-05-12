@@ -23,7 +23,7 @@ void handle_client_read(manager_t *manager, handle_t *client_hdl)
 	{
 		buf[r] = '\0';
 		printf("%s: %s\n", data->hc_nick, buf);
-		if (strncmp("QUIT", buf, 4))
+		if (!strncmp("QUIT", buf, 4))
 			handle_client_delete(manager, client_hdl);
 		else
 			irc_cmd_run(manager, client_hdl, buf);
