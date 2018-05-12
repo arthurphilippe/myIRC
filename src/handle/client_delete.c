@@ -22,7 +22,10 @@ void handle_client_delete(manager_t *manager, handle_t *client_hdl)
 	}
 	client_hdl->h_type = H_FREE;
 	free(data->hc_nick);
+	free(data->hc_username);
+	free(data->hc_realname);
 	list_destroy(data->hc_channels);
+	list_destroy(data->hc_cmd_buff);
 	manager_client_remove(manager, client_hdl);
 	free(data);
 	manager->m_live = false;

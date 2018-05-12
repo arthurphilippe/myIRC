@@ -22,6 +22,7 @@ typedef struct		s_handle_client {
 	char		*hc_realname;
 	char		*hc_username;
 	list_t		*hc_channels;
+	list_t		*hc_cmd_buff;
 	log_level_t	hc_log_level;
 }			handle_client_t;
 

@@ -21,7 +21,5 @@ void handle_port_read(manager_t *manager, handle_t *port_hdl)
 	socket = accept(port_hdl->h_fd, (struct sockaddr *) &sin, &sin_len);
 	if (socket == -1)
 		return;
-	dprintf(socket, "PING :tartiflette\r\n");
-	dprintf(socket, ":server 001 foo patate\r\n");
 	handle_client_create(manager, socket);
 }

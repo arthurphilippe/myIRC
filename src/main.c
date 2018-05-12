@@ -11,8 +11,8 @@
 
 int main()
 {
-	printf("salut, je ne regarde pas les arguments. J'utilise le port 4242\n");
-	manager_t *manager = manager_create_port(4242);
+	printf("salut, je ne regarde pas les arguments. J'utilise le port 4240\n");
+	manager_t *manager = manager_create_port(4240);
 
 	if (!manager)
 		return (84);
