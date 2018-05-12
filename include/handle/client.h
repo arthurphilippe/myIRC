@@ -22,7 +22,7 @@ typedef struct		s_handle_client {
 	char		*hc_realname;
 	char		*hc_username;
 	list_t		*hc_channels;
-	log_level_t	*hc_log_level;
+	log_level_t	hc_log_level;
 }			handle_client_t;
 
 #endif /* !HANDLE_CLIENT_H_ */

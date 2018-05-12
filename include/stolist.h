@@ -11,5 +11,6 @@
 	#include "list.h"
 
 list_t *stolist(const char *str, const char *spacers);
+list_t *stolist_spe_irc(const char *str, const char *spacers);
 
 #endif /* !STOLIST_H_ */
