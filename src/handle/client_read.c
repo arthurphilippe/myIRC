@@ -12,6 +12,12 @@
 #include "handle/client.h"
 #include "irc/cmd.h"
 
+static void fill_cmd_buff(handle_client_t *client, char buff)
+{
+	if (!client->hc_cmd_buff)
+		client->hc_cmd_buff = list_create(NULL);
+}
+
 void handle_client_read(manager_t *manager, handle_t *client_hdl)
 {
 	int r;

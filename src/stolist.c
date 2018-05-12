@@ -24,22 +24,31 @@ static int push_back_substr(list_t *list, const char *str,
 	return (LIST_ERR);
 }
 
-list_t *stolist(const char *str, const char *spacers)
+list_t *stolist_existing(list_t *list, const char *str, const char *spacers)
 {
-	list_t *list = list_create(free);
 	int i = 0;
 	int ret;
 
-	if (!list)
-		return (NULL);
 	while (str[i]) {
 		ret = push_back_substr(list, &str[i], spacers);
-		if (ret == LIST_ERR) {
-			list_destroy(list);
+		if (ret == LIST_ERR)
 			return (NULL);
-		}
 		i += ret;
 		i += strspn(&str[i], spacers);
+	}
+	return (list);
+
+}
+
+list_t *stolist(const char *str, const char *spacers)
+{
+	list_t *list = list_create(free);
+
+	if (!list)
+		return (NULL);
+	if (!stolist_existing(list, str, spacers)) {
+		list_destroy(list);
+		return (NULL);
 	}
 	return (list);
 }
