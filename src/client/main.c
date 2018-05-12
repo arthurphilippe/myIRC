@@ -18,6 +18,9 @@ static void print_usage(void)
 int main(void)
 {
 	manager_t *manager = manager_create_connect();
+
+	if (!manager)
+		return (84);
 	manager_loop(manager);
 	print_usage();
 	manager_delete(manager);
