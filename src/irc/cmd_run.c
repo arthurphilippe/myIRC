@@ -13,6 +13,7 @@
 const irc_cmd_t cmd_map[] = {
 	{"USER", irc_cmd_user},
 	{"NICK", irc_cmd_nick},
+	{"JOIN", irc_cmd_join},
 	{NULL, NULL},
 };
 

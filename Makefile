@@ -44,7 +44,8 @@ SRCS		=	src/manager/create.c		\
 			src/list_pop.c			\
 			src/list_iter.c			\
 			src/list_find.c			\
-			src/stolist.c
+			src/stolist.c			\
+			src/irc/cmd/join.c
 
 MAIN_CLIENT	=	src/client/main.c
 
@@ -76,7 +77,7 @@ SRCS_CLIENT	=	src/manager/connect_to_server.c \
 			src/list_find.c			\
 			src/client/part.c		\
 			src/client/list.c		\
-			src/client/names.c
+			src/client/names.c		\
 
 OBJ_MAIN	=	$(MAIN:.c=.o)
 
