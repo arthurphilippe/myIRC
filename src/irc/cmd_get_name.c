@@ -26,4 +26,3 @@ char *irc_cmd_get_name(list_t *split_cmd)
 	}
 	return (NULL);
 }
-

@@ -22,11 +22,14 @@ typedef struct	s_channel {
 
 int manager_channel_create(manager_t *manager, const char *name);
 void manager_channel_leave(channel_t *channel, handle_t *client);
+void manager_channel_leave_by_name(manager_t *manager, handle_t *client,
+					const char *chan_name);
 int manager_channel_join(channel_t *channel, handle_t *client);
 int manager_channel_join_by_name(manager_t *manager,
 					const char *chanstr,
 					handle_t *client);
 void manager_channel_destroy(void *ptr);
+channel_t *manager_channel_find(manager_t *manager, const char *str);
 
 void manager_client_remove(manager_t *manager, handle_t *client);
 int manager_client_add(manager_t *manager, handle_t *client);

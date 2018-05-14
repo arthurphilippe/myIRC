@@ -18,7 +18,7 @@ static void fill_cmd_buff(handle_client_t *client, char *buff)
 {
 	if (!client->hc_cmd_buff)
 		return;
-	stolist_existing(client->hc_cmd_buff, buff, "\n");
+	stolist_existing(client->hc_cmd_buff, buff, "\n\r");
 }
 
 static void send_buffed_cmds(manager_t *manager, handle_t *client_hdl,

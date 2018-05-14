@@ -14,6 +14,7 @@ const irc_cmd_t cmd_map[] = {
 	{"USER", irc_cmd_user},
 	{"NICK", irc_cmd_nick},
 	{"JOIN", irc_cmd_join},
+	{"PART", irc_cmd_part},
 	{NULL, NULL},
 };
 
@@ -36,7 +37,7 @@ static int run_map_cmd(manager_t *manager, handle_t *hdl, list_t *cmd)
 
 void irc_cmd_run(manager_t *manager, handle_t *hdl, const char *cmd)
 {
-	list_t *split_cmd = stolist_spe_irc(cmd, " \r");
+	list_t *split_cmd = stolist_spe_irc(cmd, " ");
 
 	if (!split_cmd)
 		return;

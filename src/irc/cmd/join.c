@@ -14,7 +14,7 @@
 #include "server.h"
 #include "stolist.h"
 
-static list_t *irc_cmd_join_create_channel(const char *arg)
+static list_t *get_channel_list(const char *arg)
 {
 	list_t *list = stolist(arg, " ");
 
@@ -23,19 +23,22 @@ static list_t *irc_cmd_join_create_channel(const char *arg)
 	return (list);
 }
 
-static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl,
-							char *arg)
+static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl, char *arg)
 {
-	list_t *list = irc_cmd_join_create_channel(arg);
+	list_t *list = get_channel_list(arg);
 	list_iter_t *it = list_iter_create(list, FWD);
-	char *tmp = NULL;
+	char *tmp;
 
-	if (!list || !it)
+	if (!list || !it) {
+		list_destroy(list);
+		free(it);
 		return;
+	}
 	while ((tmp = list_iter_access(it))) {
 		manager_channel_join_by_name(manager, tmp, hdl);
 		list_iter_next(it);
 	}
+	free(it);
 	list_destroy(list);
 }
 
@@ -56,7 +59,6 @@ void irc_cmd_join(manager_t *manager, handle_t *hdl, list_t *arg)
 {
 	handle_client_t *client = hdl->h_data;
 
-	(void) manager;
 	if (arg->l_size < 1) {
 		dprintf(hdl->h_fd, "461 %s JOIN :Not enough parameters\r\n",
 			client->hc_nick);
