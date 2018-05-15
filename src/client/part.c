@@ -68,8 +68,10 @@ int client_cmd_part(manager_t *manager, char *arg)
 	if ((str = client_create_part_cmd(iterator)) == NULL)
 		return (ret_int_client(RET_ERR, "Command part", "failed",
 							"(malloc failed)"));
-	if (strlen(str) > 0)
-		dprintf(client->fd, "%s %s\r\n", "PART", str);
+	if (strlen(str) > 0) {
+		dprintf(client->fd, "%s :%s\r\n", "PART", str);
+		memset(client->channel, '\0', CMD_MAX_SIZE);
+	}
 	free(iterator);
 	free(str);
 	list_destroy(list);
