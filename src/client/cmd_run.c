@@ -21,6 +21,7 @@ const cmd_t cmd_map[] = {
 	{CLIENT_CMD_LIST, CONNECTED, client_cmd_list},
 	{CLIENT_CMD_USERS, CONNECTED, client_cmd_users},
 	{CLIENT_CMD_NAMES, CONNECTED, client_cmd_names},
+	{CLIENT_CMD_MSG, CONNECTED, client_cmd_msg},
 	{"", UNK_STATE, NULL}
 };
 
