@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "irc/cmd.h"
+#include "irc/msg.h"
 #include "handle/client.h"
 
 void irc_cmd_nick_extract(handle_t *hdl, list_t *arg)
@@ -25,9 +26,7 @@ void irc_cmd_nick_extract(handle_t *hdl, list_t *arg)
 		client->hc_log_level = NICK;
 	else if (client->hc_log_level == USER) {
 		client->hc_log_level = OK;
-		dprintf(hdl->h_fd, "PING :tartiflette\r\n");
-		dprintf(hdl->h_fd, ":server 001 %s patate\r\n",
-			client->hc_nick);
+		irc_msg_welcome(hdl);
 	}
 }
 

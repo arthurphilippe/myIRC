@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "irc/cmd.h"
+#include "irc/msg.h"
 #include "handle/client.h"
 
 void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
@@ -19,7 +20,10 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	if (!iter)
 		return;
 	free(client->hc_username);
-	client->hc_username = strdup(list_iter_next(iter));
+	client->hc_username = strdup(list_iter_access(iter));
+	if (!client->hc_nick)
+		client->hc_nick = strdup(list_iter_access(iter));
+	list_iter_next(iter);
 	list_iter_next(iter);
 	list_iter_next(iter);
 	free(client->hc_realname);
@@ -28,9 +32,9 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	if (client->hc_log_level == NONE)
 		client->hc_log_level = USER;
 	else {
-		dprintf(hdl->h_fd, "PING :tartiflette\r\n");
 		client->hc_log_level = OK;
 	}
+	irc_msg_welcome(hdl);
 }
 
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg)
