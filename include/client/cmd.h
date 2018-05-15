@@ -18,6 +18,7 @@
 #define CLIENT_CMD_USERS "/users"
 #define CLIENT_CMD_NAMES "/names"
 #define CLIENT_CMD_JOIN "/join"
+#define CLIENT_CMD_MSG "/msg"
 #define CMD_MAIN_DELIM " "
 
 /*

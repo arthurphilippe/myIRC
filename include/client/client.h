@@ -47,6 +47,7 @@ typedef struct	s_client {
 /*
 **	Client commands
 */
+int client_cmd_msg(manager_t *manager, char *arg);
 int client_cmd_quit(manager_t *manager, char *arg);
 int client_cmd_nick(manager_t *manager, char *arg);
 int client_cmd_user(manager_t *manager, char *arg);
