@@ -24,6 +24,6 @@ char *irc_cmd_get_name(list_t *split_cmd)
 		free(iter);
 		return (strdup(tmp));
 	}
+	free(iter);
 	return (NULL);
 }
-

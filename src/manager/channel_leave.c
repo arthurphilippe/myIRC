@@ -18,3 +18,13 @@ void manager_channel_leave(channel_t *channel, handle_t *client)
 		free(iter);
 	}
 }
+
+void manager_channel_leave_by_name(manager_t *manager, handle_t *client,
+					const char *chan_name)
+{
+	channel_t *chan = manager_channel_find(manager, chan_name);
+
+	if (chan) {
+		manager_channel_leave(chan, client);
+	}
+}

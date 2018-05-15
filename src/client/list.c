@@ -47,10 +47,7 @@ static char *client_create_list_cmd(list_iter_t *iterator)
 	if (!str)
 		return (NULL);
 	memset(str, '\0', CMD_MAX_SIZE);
-	while(1) {
-		tmp = list_iter_access(iterator);
-		if (!tmp)
-			break;
+	while((tmp = list_iter_access(iterator))) {
 		i = list_cmd(str, tmp, i);
 		list_iter_next(iterator);
 	}
