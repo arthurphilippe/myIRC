@@ -36,6 +36,7 @@ static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl, char *arg)
 	}
 	while ((tmp = list_iter_access(it))) {
 		manager_channel_join_by_name(manager, tmp, hdl);
+		manager_channel_names_by_name(manager, hdl, tmp);
 		list_iter_next(it);
 	}
 	free(it);
