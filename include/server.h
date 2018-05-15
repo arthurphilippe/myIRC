@@ -30,6 +30,10 @@ int manager_channel_join_by_name(manager_t *manager,
 					handle_t *client);
 void manager_channel_destroy(void *ptr);
 channel_t *manager_channel_find(manager_t *manager, const char *str);
+void manager_channel_names(channel_t *chan, handle_t *client);
+void manager_channel_names_by_name(manager_t *manager, handle_t *client,
+					const char *chan_name);
+
 
 void manager_client_remove(manager_t *manager, handle_t *client);
 int manager_client_add(manager_t *manager, handle_t *client);
