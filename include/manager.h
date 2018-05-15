@@ -70,6 +70,7 @@ void		handle_port_read(manager_t *manager, handle_t *port_hdl);
 void	handle_client_read(manager_t *manager, handle_t *client_hdl);
 int	handle_client_create(manager_t *manager, int sock);
 void	handle_client_delete(manager_t *manager, handle_t *client_hdl);
+handle_t *handle_client_find(manager_t *manager, const char *name);
 
 int manager_connect_to_server(manager_t *manager, char *arg);
 

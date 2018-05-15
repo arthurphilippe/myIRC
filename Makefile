@@ -28,6 +28,7 @@ SRCS		=	src/manager/create.c		\
 			src/manager/channel_find.c	\
 			src/manager/channel_names.c	\
 			src/manager/channel_list.c	\
+			src/manager/channel_send_msg.c	\
 			src/manager/client.c		\
 			src/handle/port_read.c		\
 			src/handle/port_create.c	\
@@ -35,6 +36,7 @@ SRCS		=	src/manager/create.c		\
 			src/handle/client_read.c	\
 			src/handle/client_delete.c	\
 			src/handle/client_set_nick.c	\
+			src/handle/client_find.c	\
 			src/irc/cmd_get_name.c		\
 			src/irc/cmd_strip_to_args.c	\
 			src/irc/cmd_run.c		\
@@ -43,7 +45,9 @@ SRCS		=	src/manager/create.c		\
 			src/irc/cmd/part.c		\
 			src/irc/cmd/names.c		\
 			src/irc/cmd/list.c		\
+			src/irc/cmd/privmsg.c		\
 			src/irc/msg/welcome.c		\
+			src/irc/msg/client.c		\
 			src/list.c			\
 			src/list_get.c			\
 			src/list_push.c			\

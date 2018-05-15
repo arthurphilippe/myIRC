@@ -35,6 +35,8 @@ void manager_channel_names_by_name(manager_t *manager, handle_t *client,
 					const char *chan_name);
 void manager_channel_list(manager_t *manager, handle_t *hld,
 				const char *matchstr);
+void manager_channel_send_msg(channel_t *chan, const char *msg,
+				const char *dest);
 
 
 void manager_client_remove(manager_t *manager, handle_t *client);

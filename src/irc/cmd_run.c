@@ -17,6 +17,7 @@ const irc_cmd_t cmd_map[] = {
 	{"PART", irc_cmd_part},
 	{"NAMES", irc_cmd_names},
 	{"LIST", irc_cmd_list},
+	{"PRIVMSG", irc_cmd_privmsg},
 	{NULL, NULL},
 };
 
