@@ -19,6 +19,7 @@ const cmd_t cmd_map[] = {
 	{CLIENT_CMD_JOIN, CONNECTED, client_cmd_join},
 	{CLIENT_CMD_PART, CONNECTED, client_cmd_part},
 	{CLIENT_CMD_LIST, CONNECTED, client_cmd_list},
+	{CLIENT_CMD_USERS, CONNECTED, client_cmd_users},
 	{CLIENT_CMD_NAMES, CONNECTED, client_cmd_names},
 	{"", UNK_STATE, NULL}
 };
@@ -48,7 +49,7 @@ int client_cmd_run(manager_t *manager, const char *cmd)
 	if (launch == false && client->fd == 0) {
 		ret_int_client(0, "Client", "not connected", "to server");
 	} else if (client->fd != 0 && launch == false) {
-		dprintf(client->fd, "%s\r\n", cmd);
+		client_cmd_privmsg(manager, strdup(cmd));
 	}
 	clean(cmd_arg, cmd_name);
 	return (0);
