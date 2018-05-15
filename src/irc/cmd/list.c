@@ -38,5 +38,4 @@ void irc_cmd_list(manager_t *manager, handle_t *hdl, list_t *arg)
 		list_extract(manager, hdl, arg);
 	dprintf(hdl->h_fd, ":myirc_serv 323 %s :End of /LIST\r\n",
 		data->hc_nick);
-
 }
