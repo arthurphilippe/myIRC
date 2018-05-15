@@ -32,5 +32,6 @@ void irc_cmd_nick(manager_t *manager, handle_t *hdl, list_t *arg);
 void irc_cmd_join(manager_t *manager, handle_t *hdl, list_t *arg);
 void irc_cmd_part(manager_t *manager, handle_t *hdl, list_t *arg);
 void irc_cmd_names(manager_t *manager, handle_t *hdl, list_t *arg);
+void irc_cmd_list(manager_t *manager, handle_t *hdl, list_t *arg);
 
 #endif /* !IRC_CMD_H_ */
