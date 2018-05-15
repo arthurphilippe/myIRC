@@ -15,7 +15,7 @@
 #define CLIENT_CMD_QUIT "/quit"
 #define CLIENT_CMD_EXIT "/exit"
 #define CLIENT_CMD_PART "/part"
-#define CLIENT_CMD_USER "/user"
+#define CLIENT_CMD_USERS "/users"
 #define CLIENT_CMD_NAMES "/names"
 #define CLIENT_CMD_JOIN "/join"
 #define CMD_MAIN_DELIM " "

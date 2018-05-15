@@ -38,6 +38,7 @@ typedef struct	s_client {
 	char	*serv_ip;
 	char	nickname[CMD_MAX_SIZE];
 	char	username[CMD_MAX_SIZE];
+	char	channel[CMD_MAX_SIZE];
 	int	port;
 	int	fd;
 	state_t state;
@@ -51,8 +52,10 @@ int client_cmd_nick(manager_t *manager, char *arg);
 int client_cmd_user(manager_t *manager, char *arg);
 int client_cmd_join(manager_t *manager, char *arg);
 int client_cmd_part(manager_t *manager, char *arg);
-int client_cmd_names(manager_t *manager, char *arg);
 int client_cmd_list(manager_t *manager, char *arg);
+int client_cmd_users(manager_t *manager, char *arg);
+int client_cmd_names(manager_t *manager, char *arg);
+int client_cmd_privmsg(manager_t *manager, char *arg);
 int client_cmd_run(manager_t *manager, const char *cmd);
 
 /*

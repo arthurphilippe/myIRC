@@ -12,7 +12,6 @@
 		"*.ipp": "c",
 		"stdlib.h": "c",
 		"sstream": "c",
-		"client.h": "c",
-		"cmd.h": "c"
+		"client.h": "c"
 	}
 }
