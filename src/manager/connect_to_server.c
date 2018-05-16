@@ -69,7 +69,7 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 		return (ret_int_error(-1, "malloc: ", MALLOC_FAIL, NULL));
 	new_client->serv_ip = client_cmd_extract_name(arg, ":");
 	client_set_port(new_client, arg);
-	if (set_fd(new_client) == RET_ERR) {
+	if (!new_client->serv_ip || set_fd(new_client) == RET_ERR) {
 		free(new_client->serv_ip);
 		new_client->serv_ip = NULL;
 		return (-1);
