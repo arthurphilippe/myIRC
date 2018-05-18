@@ -28,5 +28,4 @@ void handle_client_delete(manager_t *manager, handle_t *client_hdl)
 	list_destroy(data->hc_cmd_buff);
 	manager_client_remove(manager, client_hdl);
 	free(data);
-	manager->m_live = false;
 }

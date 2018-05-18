@@ -7,15 +7,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "manager.h"
 
-int main()
+int main(int ac, char **av)
 {
-	printf("salut, je ne regarde pas les arguments. J'utilise le port 4241\n");
-	manager_t *manager = manager_create_port(4241);
+	manager_t *manager = NULL;
 
+	if (ac >= 2)
+		manager = manager_create_port(atoi(av[1]));
 	if (!manager)
 		return (84);
 	manager_loop(manager);
 	manager_delete(manager);
+	return (0);
 }
