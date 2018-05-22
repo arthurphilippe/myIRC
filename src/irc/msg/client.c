@@ -9,10 +9,9 @@
 #include "manager.h"
 #include "handle/client.h"
 
-void irc_msg_client(handle_t *hdl, const char *msg, const char *dest)
+void irc_msg_client(handle_t *hdl, const char *msg, const char *dest,
+			const char *sender)
 {
-	handle_client_t *client = hdl->h_data;
-
 	dprintf(hdl->h_fd, ":%s PRIVMSG %s :%s\r\n",
-		client->hc_nick, dest, msg);
+		sender, dest, msg);
 }

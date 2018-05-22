@@ -18,12 +18,13 @@ static void send_msg(manager_t *manager, handle_t *hdl,
 			const char *dest, const char *msg)
 {
 	void *recp = manager_channel_find(manager, dest);
+	handle_client_t *client = hdl->h_data;
 
 	if (recp) {
-		manager_channel_send_msg(recp, msg, dest);
+		manager_channel_send_msg(recp, msg, dest, hdl);
 	} else {
 		recp = handle_client_find(manager, dest);
-		irc_msg_client(hdl, msg, dest);
+		irc_msg_client(hdl, msg, dest, client->hc_nick);
 	}
 }
 

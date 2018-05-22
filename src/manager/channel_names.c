@@ -34,7 +34,7 @@ void manager_channel_names(channel_t *chan, handle_t *client)
 		return;
 	while ((member = list_iter_access(iter))) {
 		memb_data = member->h_data;
-		dprintf(client->h_fd, ":myirc_serv 353 %s = %s :@%s\n\r",
+		dprintf(client->h_fd, ":myirc_serv 353 %s = %s :%s\n\r",
 			data->hc_nick, chan->ch_name, memb_data->hc_nick);
 		list_iter_next(iter);
 	}
