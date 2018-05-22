@@ -33,8 +33,8 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 		client->hc_log_level = USER;
 	else {
 		client->hc_log_level = OK;
+		irc_msg_welcome(hdl);
 	}
-	irc_msg_welcome(hdl);
 }
 
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg)

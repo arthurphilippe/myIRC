@@ -23,6 +23,16 @@ static list_t *get_channel_list(const char *arg)
 	return (list);
 }
 
+static bool check_validity(handle_t *hdl, const char *chan_name)
+{
+	if (chan_name[0] != '&' && chan_name[0] != '#') {
+		dprintf(hdl->h_fd, ":myirc_serv 475 %s cannot join.\r\n",
+			chan_name);
+		return (false);
+	}
+	return (true);
+}
+
 static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl, char *arg)
 {
 	list_t *list = get_channel_list(arg);
@@ -34,10 +44,11 @@ static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl, char *arg)
 		free(it);
 		return;
 	}
-	while ((tmp = list_iter_access(it))) {
+	while ((tmp = list_iter_next(it))) {
+		if (!check_validity(hdl, tmp))
+			continue;
 		manager_channel_join_by_name(manager, tmp, hdl);
 		manager_channel_names_by_name(manager, hdl, tmp);
-		list_iter_next(it);
 	}
 	free(it);
 	list_destroy(list);
