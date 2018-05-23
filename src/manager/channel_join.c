@@ -69,11 +69,12 @@ int manager_channel_join_by_name(manager_t *manager,
 int manager_channel_join(channel_t *channel, handle_t *client)
 {
 	list_iter_t *member = list_find_addr(channel->ch_clients, client);
+	int ret = -1;
 
 	if (!member) {
+		ret = list_push_back(channel->ch_clients, client);
 		manager_channel_join_notify(channel, client);
-		return (list_push_back(channel->ch_clients, client));
 	}
 	free(member);
-	return (-1);
+	return (ret);
 }

@@ -37,7 +37,6 @@ typedef struct			s_list_iterator {
 	list_iter_mode_t	li_mode;
 }				list_iter_t;
 
-
 /*
 ** Prototypes
 */

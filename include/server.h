@@ -9,6 +9,7 @@
 	#define SERVER_H_
 
 	#include "list.h"
+	#include "manager.h"
 
 typedef struct	s_server {
 	list_t	*sv_clients;

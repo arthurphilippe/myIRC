@@ -24,7 +24,7 @@ static void send_msg(manager_t *manager, handle_t *hdl,
 		manager_channel_send_msg(recp, msg, dest, hdl);
 	} else {
 		recp = handle_client_find(manager, dest);
-		irc_msg_client(hdl, msg, dest, client->hc_nick);
+		irc_msg_client(recp, msg, dest, client->hc_nick);
 	}
 }
 

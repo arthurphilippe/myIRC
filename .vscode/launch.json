@@ -45,7 +45,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/server",
-			"args": ["4243", "."],
+			"args": ["4244", "."],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "build debug",
