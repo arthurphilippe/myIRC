@@ -8,7 +8,7 @@
 #ifndef LIST_H_
 	#define LIST_H_
 
-	#include "stddef.h"
+	#include <stddef.h>
 
 	#define LIST_ERR -1
 	#define LIST_OK 0
