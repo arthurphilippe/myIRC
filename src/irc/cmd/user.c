@@ -12,6 +12,13 @@
 #include "irc/msg.h"
 #include "handle/client.h"
 
+static void cmd_user_get_realname(list_iter_t *iter)
+{
+	list_iter_next(iter);
+	list_iter_next(iter);
+	list_iter_next(iter);
+}
+
 void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 {
 	handle_client_t *client = hdl->h_data;
@@ -23,9 +30,7 @@ void irc_cmd_user_extract(handle_t *hdl, list_t *arg)
 	client->hc_username = strdup(list_iter_access(iter));
 	if (!client->hc_nick)
 		client->hc_nick = strdup(list_iter_access(iter));
-	list_iter_next(iter);
-	list_iter_next(iter);
-	list_iter_next(iter);
+	cmd_user_get_realname(iter);
 	free(client->hc_realname);
 	client->hc_realname = strdup(list_iter_access(iter));
 	free(iter);
