@@ -58,7 +58,7 @@ int client_cmd_names(manager_t *manager, char *arg)
 	}
 	if ((str = client_create_names_cmd(iterator)) == NULL)
 		return (ret_int_client(RET_ERR, "Command names", "failed",
-							"(malloc failed)"));
+					"(malloc failed)"));
 	dprintf(client->fd, "%s %s\r\n", "NAMES", str);
 	free(iterator);
 	free(str);

@@ -10,7 +10,8 @@
 #include "manager.h"
 #include "server.h"
 
-Test(manager_client, one_client) {
+Test(manager_client, one_client)
+{
 	manager_t *manager = manager_create();
 
 	if (!manager) {
@@ -42,7 +43,8 @@ Test(manager_client, one_client) {
 	cr_assert_eq(manager->m_handles[0].h_type, H_FREE);
 }
 
-Test(manager_client, multi_client) {
+Test(manager_client, multi_client)
+{
 	manager_t *manager = manager_create();
 
 	if (!manager) {

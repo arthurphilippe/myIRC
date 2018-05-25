@@ -9,7 +9,8 @@
 #include <criterion/assert.h>
 #include "stolist.h"
 
-Test(stolist, one_word) {
+Test(stolist, one_word)
+{
 	list_t *words = stolist("toto", " ");
 
 	cr_assert(words);
@@ -18,7 +19,8 @@ Test(stolist, one_word) {
 	list_destroy(words);
 }
 
-Test(stolist, one_word_no_spacer) {
+Test(stolist, one_word_no_spacer)
+{
 	list_t *words = stolist("toto", "");
 
 	cr_assert(words);
@@ -27,7 +29,8 @@ Test(stolist, one_word_no_spacer) {
 	list_destroy(words);
 }
 
-Test(stolist, multiple_words) {
+Test(stolist, multiple_words)
+{
 	list_t *words = stolist("toto va a   la plage avec ses khey et\
  sa   serviette", " ");
 
@@ -60,7 +63,8 @@ Test(stolist, multiple_words) {
 	free(iter);
 }
 
-Test(stolist, multiple_words_and_spacers) {
+Test(stolist, multiple_words_and_spacers)
+{
 	list_t *words = stolist("toto va a   la plage avec ses khey et\
  sa   serviette ; mais sans son code civil. nous,sommes,separes,\
  par,des ,virgules,", ", ;.");
@@ -116,7 +120,8 @@ Test(stolist, multiple_words_and_spacers) {
 	free(iter);
 }
 
-Test(stolist_spe_irc, one_word) {
+Test(stolist_spe_irc, one_word)
+{
 	list_t *words = stolist_spe_irc("toto", " ");
 
 	cr_assert(words);
@@ -125,7 +130,8 @@ Test(stolist_spe_irc, one_word) {
 	list_destroy(words);
 }
 
-Test(stolist_spe_irc, one_word_no_spacer) {
+Test(stolist_spe_irc, one_word_no_spacer)
+{
 	list_t *words = stolist_spe_irc("toto", "");
 
 	cr_assert(words);
@@ -134,7 +140,8 @@ Test(stolist_spe_irc, one_word_no_spacer) {
 	list_destroy(words);
 }
 
-Test(stolist_spe_irc, multiple_words) {
+Test(stolist_spe_irc, multiple_words)
+{
 	list_t *words = stolist_spe_irc("toto va a   la plage avec ses khey et\
  sa   serviette :je ne suis pas découpé parce que je suis précédé par deux-points", " ");
 
@@ -170,7 +177,8 @@ Test(stolist_spe_irc, multiple_words) {
 	free(iter);
 }
 
-Test(stolist_spe_irc, multiple_words_and_spacers) {
+Test(stolist_spe_irc, multiple_words_and_spacers)
+{
 	list_t *words = stolist_spe_irc("toto va a   la plage avec ses khey et\
  sa   serviette ; mais sans son code civil. nous,sommes,separes,\
  par,des ,virgules,:je ne suis pas découpé parce que je suis précédé par deux-points", ", ;.");
