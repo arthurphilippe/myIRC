@@ -82,4 +82,3 @@ list_t *stolist_spe_irc(const char *str, const char *spacers)
 	}
 	return (list);
 }
-

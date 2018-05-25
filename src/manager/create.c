@@ -24,7 +24,7 @@ static void upon_signal(int signum)
 /*
 ** Creates an empty server
 */
-manager_t *manager_create()
+manager_t *manager_create(void)
 {
 	manager_t *manager = malloc(sizeof(manager_t));
 

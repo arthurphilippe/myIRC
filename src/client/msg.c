@@ -25,7 +25,7 @@ static int msg_cmd(char *dest, char *src, int i)
 
 /*
 **	Read all of the strings in the list
-**	concat all the strings in one char* returned.
+**	concat all the strings in one char * returned.
 */
 static char *client_create_msg_cmd(list_iter_t *iterator)
 {
@@ -36,7 +36,7 @@ static char *client_create_msg_cmd(list_iter_t *iterator)
 	if (!str)
 		return (NULL);
 	memset(str, '\0', CMD_MAX_SIZE);
-	while((tmp = list_iter_access(iterator))) {
+	while ((tmp = list_iter_access(iterator))) {
 		i = msg_cmd(str, tmp, i);
 		list_iter_next(iterator);
 	}
@@ -54,8 +54,8 @@ int client_cmd_msg(manager_t *manager, char *arg)
 	if (list->l_size < 2 || !client || client->state != CONNECTED) {
 		list_destroy(list);
 		free(iterator);
-		return (ret_int_client(0, "/msg: ", "USAGE /msg $user $text"
-							, ""));
+		return (ret_int_client(0, "/msg: ", "USAGE /msg $user $text",
+					""));
 	}
 	who = list_iter_access(iterator);
 	if (who[0] == '#') {

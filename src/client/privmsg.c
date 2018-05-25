@@ -17,15 +17,15 @@ int client_cmd_privmsg(manager_t *manager, char *arg)
 
 	if (!client || client->state != CONNECTED || !arg) {
 		return (ret_int_client(0, "Client", "not connected",
-							"to a server"));
+					"to a server"));
 	}
 	if (strlen(client->channel))
 		dprintf(client->fd, "PRIVMSG %s :%s\n\r",
-					client->channel ,arg);
+			client->channel ,arg);
 	else {
 		free(arg);
 		return (ret_int_client(0, "Client", "not connected",
-							"to a channel"));
+					"to a channel"));
 	}
 	free(arg);
 	return (0);

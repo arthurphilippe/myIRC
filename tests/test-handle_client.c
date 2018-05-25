@@ -11,7 +11,8 @@
 #include "server.h"
 #include "handle/client.h"
 
-Test(handle_client, nickname) {
+Test(handle_client, nickname)
+{
 	handle_t client;
 	handle_client_t data;
 
@@ -24,7 +25,8 @@ Test(handle_client, nickname) {
 	free(data.hc_nick);
 }
 
-Test(handle_client_find, complete) {
+Test(handle_client_find, complete)
+{
 	manager_t *manager = manager_create();
 
 	if (!manager) {

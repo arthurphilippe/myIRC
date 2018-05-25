@@ -63,8 +63,8 @@ int manager_connect_to_server(manager_t *manager, char *arg)
 	client_t *new_client = manager->m_data;
 
 	if (!arg)
-		return(ret_int_client(0, "USAGE: /server", "$host[:port]",
-								""));
+		return (ret_int_client(0, "USAGE: /server",
+					"$host[:port]", ""));
 	if (!new_client)
 		return (ret_int_error(-1, "malloc: ", MALLOC_FAIL, NULL));
 	new_client->serv_ip = client_cmd_extract_name(arg, ":");

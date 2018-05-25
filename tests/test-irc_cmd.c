@@ -11,7 +11,8 @@
 #include "irc/cmd.h"
 #include "handle/client.h"
 
-Test(irc_cmd, strip_to_args_prefix) {
+Test(irc_cmd, strip_to_args_prefix)
+{
 	list_t *cmd = stolist(
 		":ignoredprefix name voiture otoctone", " ");
 
@@ -27,7 +28,8 @@ Test(irc_cmd, strip_to_args_prefix) {
 	list_destroy(cmd);
 }
 
-Test(irc_cmd, strip_to_args_noprefix) {
+Test(irc_cmd, strip_to_args_noprefix)
+{
 	list_t *cmd = stolist(
 		"name voiture otoctone", " ");
 
@@ -43,7 +45,8 @@ Test(irc_cmd, strip_to_args_noprefix) {
 	list_destroy(cmd);
 }
 
-Test(irc_cmd, get_name_no_prefix) {
+Test(irc_cmd, get_name_no_prefix)
+{
 	list_t *cmd = stolist(
 		"name voiture otoctone", " ");
 	char *name_cmd = irc_cmd_get_name(cmd);
@@ -53,7 +56,8 @@ Test(irc_cmd, get_name_no_prefix) {
 	list_destroy(cmd);
 }
 
-Test(irc_cmd, get_name_prefix) {
+Test(irc_cmd, get_name_prefix)
+{
 	list_t *cmd = stolist(
 		":qsdiofjqsmiojazemroifjqzemrlfj name voiture otoctone", " ");
 	char *name_cmd = irc_cmd_get_name(cmd);
@@ -65,7 +69,8 @@ Test(irc_cmd, get_name_prefix) {
 
 void irc_cmd_user_extract(handle_t *hdl, list_t *arg);
 
-Test(irc_cmd_user, extraction) {
+Test(irc_cmd_user, extraction)
+{
 	list_t *cmd = stolist_spe_irc("cheap noop noop :Jaffar Tram", " ");
 	handle_t handle;
 	handle.h_fd = 1;
@@ -93,7 +98,8 @@ Test(irc_cmd_user, extraction) {
 void irc_cmd_user(manager_t *manager, handle_t *hdl, list_t *arg);
 void irc_cmd_nick(manager_t *manager, handle_t *hdl, list_t *arg);
 
-Test(irc_cmd_user, whole_ok) {
+Test(irc_cmd_user, whole_ok)
+{
 	list_t *cmd = stolist_spe_irc("cheap noop noop :Jaffar Tram", " ");
 	handle_t handle;
 	handle.h_fd = 1;
@@ -135,7 +141,8 @@ Test(irc_cmd_user, whole_ok) {
 	free(client.hc_nick);
 }
 
-Test(irc_cmd_user, whole_param_err) {
+Test(irc_cmd_user, whole_param_err)
+{
 	list_t *cmd = stolist_spe_irc("cheap noop :Jaffar Tram", " ");
 	handle_t handle;
 	handle.h_fd = 1;
@@ -160,7 +167,8 @@ Test(irc_cmd_user, whole_param_err) {
 	free(client.hc_nick);
 }
 
-Test(irc_cmd_user, whole_param_relog) {
+Test(irc_cmd_user, whole_param_relog)
+{
 	list_t *cmd = stolist_spe_irc("cheap noop noop :Jaffar Tram", " ");
 	handle_t handle;
 	handle.h_fd = 1;

@@ -11,7 +11,8 @@
 #include <string.h>
 #include "list.h"
 
-Test(list, empty) {
+Test(list, empty)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -23,7 +24,8 @@ Test(list, empty) {
 	list_destroy(list);
 }
 
-Test(list, nullDestructor) {
+Test(list, nullDestructor)
+{
 	list_t *list = list_create(NULL);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -52,7 +54,8 @@ Test(list, nullDestructor) {
 	free(tmp);
 }
 
-Test(list, pushback) {
+Test(list, pushback)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -76,7 +79,8 @@ Test(list, pushback) {
 	list_destroy(list);
 }
 
-Test(list, pushfront) {
+Test(list, pushfront)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -100,7 +104,8 @@ Test(list, pushfront) {
 	list_destroy(list);
 }
 
-Test(list, frontAndBack) {
+Test(list, frontAndBack)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -134,7 +139,8 @@ Test(list, frontAndBack) {
 	list_destroy(list);
 }
 
-Test(list, popbackAndPopFront) {
+Test(list, popbackAndPopFront)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -202,7 +208,8 @@ Test(list, popbackAndPopFront) {
 	list_destroy(list);
 }
 
-Test(list_iterator, forward) {
+Test(list_iterator, forward)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -249,7 +256,8 @@ Test(list_iterator, forward) {
 	free(iter);
 }
 
-Test(list_iterator, backward) {
+Test(list_iterator, backward)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -290,7 +298,8 @@ Test(list_iterator, backward) {
 	free(iter);
 }
 
-Test(list_iterator, error) {
+Test(list_iterator, error)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);
@@ -329,7 +338,8 @@ Test(list_iterator, error) {
 	free(iter);
 }
 
-Test(list, find) {
+Test(list, find)
+{
 	list_t *list = list_create(free);
 
 	cr_assert_eq(list_get_size(list), 0);

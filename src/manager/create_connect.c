@@ -11,7 +11,7 @@
 #include "handle/server.h"
 #include "client/client.h"
 
-manager_t *manager_create_connect()
+manager_t *manager_create_connect(void)
 {
 	manager_t *manager = manager_create();
 	client_t *client;

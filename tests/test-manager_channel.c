@@ -12,7 +12,8 @@
 #include "irc/cmd.h"
 #include "stolist.h"
 
-Test(manager_channel, 1) {
+Test(manager_channel, 1)
+{
 	manager_t *manager = manager_create();
 
 	if (!manager) {
@@ -64,7 +65,8 @@ Test(manager_channel, 1) {
 	free(manager);
 }
 
-Test(manager_channel, 2) {
+Test(manager_channel, 2)
+{
 	manager_t *manager = manager_create();
 
 	if (!manager) {
