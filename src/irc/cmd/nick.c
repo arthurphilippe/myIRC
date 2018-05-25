@@ -17,9 +17,12 @@ static void notify_all_chans(handle_t *hdl,
 				const char *new_nick)
 {
 	handle_client_t *client = hdl->h_data;
-	list_iter_t *iter = list_iter_create(client->hc_channels, FWD);
+	list_iter_t *iter;
 	channel_t *chan;
 
+	if (!client->hc_channels)
+		return;
+	iter = list_iter_create(client->hc_channels, FWD);
 	if (!iter || !list_iter_access(iter)) {
 		dprintf(hdl->h_fd, ":%s!%s@127.0.0.1.IP NICK %s\r\n",
 			client->hc_nick, client->hc_realname, new_nick);
