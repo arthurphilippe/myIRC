@@ -38,7 +38,7 @@ static char *client_create_names_cmd(list_iter_t *iterator)
 	if (!str)
 		return (NULL);
 	memset(str, '\0', CMD_MAX_SIZE);
-	while((tmp = list_iter_access(iterator))) {
+	while ((tmp = list_iter_access(iterator))) {
 		i = names_cmd(str, tmp, i);
 		list_iter_next(iterator);
 	}
