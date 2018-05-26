@@ -31,9 +31,9 @@ void manager_client_remove(manager_t *manager, handle_t *client)
 	server_t *serv = manager->m_data;
 	list_iter_t *iter = list_find_addr(serv->sv_clients, client);
 
+	rm_from_all_channel(serv->sv_channels, client);
 	if (iter) {
 		list_erase(iter);
 		free(iter);
 	}
-	rm_from_all_channel(serv->sv_channels, client);
 }

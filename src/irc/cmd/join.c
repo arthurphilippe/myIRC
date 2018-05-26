@@ -16,7 +16,7 @@
 
 static list_t *get_channel_list(const char *arg)
 {
-	list_t *list = stolist(arg, " ");
+	list_t *list = stolist(arg, ",");
 
 	if (!list)
 		return (NULL);
