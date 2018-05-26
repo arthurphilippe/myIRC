@@ -41,6 +41,7 @@ void manager_channel_send_msg(channel_t *chan, const char *msg,
 void manager_channel_join_notify(channel_t *chan, handle_t *client_hdl);
 void manager_channel_nick_notify(channel_t *chan, handle_t *client_hdl,
 					const char *new_nick);
+void manager_channel_part_notify(channel_t *chan, handle_t *client_hdl);
 
 void manager_client_remove(manager_t *manager, handle_t *client);
 int manager_client_add(manager_t *manager, handle_t *client);

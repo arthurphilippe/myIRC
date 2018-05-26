@@ -16,6 +16,7 @@ void manager_channel_leave(channel_t *channel, handle_t *client)
 	handle_client_t *data = client->h_data;
 
 	if (iter) {
+		manager_channel_part_notify(channel, client);
 		list_erase(iter);
 		free(iter);
 	}
