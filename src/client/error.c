@@ -51,15 +51,17 @@ int ret_int_client(int ret, const char *msg, const char *what, const char *end)
 	else if (!msg)
 		dprintf(2, ANSI_COLOR_MAGENTA
 			"Client::"ANSI_COLOR_RESET
-			"\033[1;31merror:\033[0m \033[1m %s\033[m %s\n", what, end);
+			"\033[1;31merror:\033[0m \033[1m %s\033[m %s\n",
+			what, end);
 	else if (!end)
 		dprintf(2, ANSI_COLOR_MAGENTA
 			"Client::"ANSI_COLOR_RESET
-			"\033[1;31merror:\033[0m %s\033[1m %s\033[m\n", msg, what);
+			"\033[1;31merror:\033[0m %s\033[1m %s\033[m\n",
+			msg, what);
 	else
 		dprintf(2, ANSI_COLOR_MAGENTA
 			"Client::"ANSI_COLOR_RESET
-			"\033[1;31merror:\033[0m %s\033[1m %s\033[m %s\n", msg,
-			what, end);
+			"\033[1;31merror:\033[0m %s\033[1m %s\033[m %s\n",
+			msg, what, end);
 	return (ret);
 }
