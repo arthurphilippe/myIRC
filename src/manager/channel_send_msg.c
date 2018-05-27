@@ -60,7 +60,6 @@ void manager_channel_part_notify(channel_t *chan, handle_t *client_hdl)
 	free(iter);
 }
 
-
 void manager_channel_nick_notify(channel_t *chan, handle_t *client_hdl,
 					const char *new_nick)
 {
@@ -75,5 +74,4 @@ void manager_channel_nick_notify(channel_t *chan, handle_t *client_hdl,
 			client->hc_nick, client->hc_realname, new_nick);
 	}
 	free(iter);
-
 }

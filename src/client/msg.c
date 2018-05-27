@@ -24,8 +24,8 @@ static int msg_cmd(char *dest, char *src, int i)
 }
 
 /*
-**	Read all of the strings in the list
-**	concat all the strings in one char * returned.
+** Read all of the strings in the list
+** concat all the strings in one char * returned.
 */
 static char *client_create_msg_cmd(list_iter_t *iterator)
 {

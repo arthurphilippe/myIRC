@@ -93,7 +93,6 @@ Test(manager_channel, 2)
 	channel_t *channel = serv->sv_channels->l_start->n_data;
 	const char *test_cmd = "JOIN &main";
 	irc_cmd_run(manager, &manager->m_handles[0], test_cmd);
-	// manager_channel_join(channel, &manager->m_handles[0]);
 	manager_channel_join_by_name(manager, "&main", &manager->m_handles[1]);
 	manager_channel_join_by_name(manager, "#clubdelecture", &manager->m_handles[1]);
 
@@ -107,7 +106,6 @@ Test(manager_channel, 2)
 
 	manager_channel_leave_by_name(manager, &manager->m_handles[0],
 		"&zoumzoumzoumdanslabenzbenzbenz");
-	// manager_channel_leave_by_name(manager, &manager->m_handles[0], "&main");
 	irc_cmd_part(manager, &manager->m_handles[0], arg);
 	arg = stolist_spe_irc("&main", " ");
 	irc_cmd_part(manager, &manager->m_handles[0], arg);
@@ -125,4 +123,3 @@ Test(manager_channel, 2)
 	free(manager->m_data);
 	free(manager);
 }
-

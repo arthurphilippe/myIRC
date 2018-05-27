@@ -13,9 +13,9 @@
 #include "stolist.h"
 
 /*
-**	format the string to a RFC compliant string
-**	taking the destination string, the source
-**	where to start in the destination
+** format the string to a RFC compliant string
+** taking the destination string, the source
+** where to start in the destination
 */
 static int part_cmd(char *dest, char *src, int i)
 {
@@ -33,8 +33,8 @@ static int part_cmd(char *dest, char *src, int i)
 }
 
 /*
-**	Read all of the strings in the list
-**	concat all the strings in one char * returned.
+** Read all of the strings in the list
+** concat all the strings in one char * returned.
 */
 static char *client_create_part_cmd(list_iter_t *iterator)
 {

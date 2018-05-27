@@ -13,9 +13,9 @@
 #include "stolist.h"
 
 /*
-**	format the string to a RFC compliant string
-**	taking the destination string, the source
-**	where to start in the destination
+** format the string to a RFC compliant string
+** taking the destination string, the source
+** where to start in the destination
 */
 static int list_cmd(char *dest, char *src, int i)
 {
@@ -35,8 +35,8 @@ static int list_cmd(char *dest, char *src, int i)
 }
 
 /*
-**	Read all of the strings in the list
-**	concat all the strings in one char * returned.
+** Read all of the strings in the list
+** concat all the strings in one char * returned.
 */
 static char *client_create_list_cmd(list_iter_t *iterator)
 {
@@ -66,7 +66,7 @@ int client_cmd_list(manager_t *manager, char *arg)
 	}
 	if ((str = client_create_list_cmd(iterator)) == NULL)
 		return (ret_int_client(RET_ERR, "Command list", "failed",
-							"(malloc failed)"));
+					"(malloc failed)"));
 	dprintf(client->fd, "%s %s\r\n", "LIST", str);
 	free(iterator);
 	free(str);

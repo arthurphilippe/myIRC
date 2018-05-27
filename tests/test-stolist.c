@@ -235,4 +235,3 @@ Test(stolist_spe_irc, multiple_words_and_spacers)
 	list_destroy(words);
 	free(iter);
 }
-

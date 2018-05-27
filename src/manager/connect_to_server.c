@@ -30,8 +30,8 @@ static int set_fd(client_t *client)
 	serv_char_ip = (struct in_addr **) ip->h_addr_list;
 	inet_pton(AF_INET, inet_ntoa(*serv_char_ip[0]), &addr.sin_addr);
 	client->fd = socket(AF_INET, SOCK_STREAM, pt->p_proto);
-	if (connect(client->fd, (const struct sockaddr *)&addr,
-						sizeof(addr)) == -1)
+	if (connect(client->fd, (const struct sockaddr *) &addr,
+			sizeof(addr)) == -1)
 		return (ret_int_error(RET_ERR, "connect failed: ",
 				"can't connect to", " the specified server"));
 	return (0);

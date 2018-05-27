@@ -12,8 +12,8 @@
 #include "client/client.h"
 
 /*
-**	Need to change this soon
-**	the function should delete allocated memory
+** Need to change this soon
+** the function should delete allocated memory
 */
 void client_read_serv(manager_t *manager, handle_t *client_hdl)
 {
@@ -28,8 +28,7 @@ void client_read_serv(manager_t *manager, handle_t *client_hdl)
 		return;
 	}
 	buf[r] = '\0';
-	dprintf(1,
-		ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
+	dprintf(1, ANSI_COLOR_GREEN"Server:: "ANSI_COLOR_RESET"%s", buf);
 	if (strlen(buf) > 0 && strlen(buf) < CMD_MAX_SIZE)
 		client_cmd_answer(manager, buf);
 }

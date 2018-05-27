@@ -50,7 +50,6 @@ Test(handle_client_find, complete)
 	handle_client_t data1;
 	handle_client_t data2;
 
-
 	data1.hc_nick = "toto";
 	data2.hc_nick = "k2000";
 	manager->m_handles[0].h_data = &data1;

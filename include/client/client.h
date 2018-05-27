@@ -45,7 +45,7 @@ typedef struct	s_client {
 }		client_t;
 
 /*
-**	Client commands
+** Client commands
 */
 int client_cmd_msg(manager_t *manager, char *arg);
 int client_cmd_quit(manager_t *manager, char *arg);
@@ -60,14 +60,13 @@ int client_cmd_privmsg(manager_t *manager, char *arg);
 int client_cmd_run(manager_t *manager, const char *cmd);
 
 /*
-**	Client automatic answer
+** Client automatic answer
 */
 int client_cmd_answer(manager_t *manager, const char *cmd);
 int client_cmd_pong(manager_t *manager, char *arg);
 
-
 /*
-**	Sides Functions
+** Sides Functions
 */
 int ret_int_error(int ret, const char *msg, const char *what, const char *end);
 void *ret_null_error(const char *msg, const char *what, const char *end);

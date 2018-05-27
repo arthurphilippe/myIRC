@@ -11,7 +11,7 @@
 #include "manager.h"
 
 /*
-**	Bind 'sock' to 'port'
+** Bind 'sock' to 'port'
 */
 static int port_bind(int sock, int port)
 {
@@ -24,8 +24,8 @@ static int port_bind(int sock, int port)
 }
 
 /*
-**	Set a free fd in manager to the port
-**	given as argument
+** Set a free fd in manager to the port
+** given as argument
 */
 int handle_port_create(manager_t *manager, int port)
 {

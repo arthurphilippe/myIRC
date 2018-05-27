@@ -49,8 +49,7 @@ static channel_t *create_channel(manager_t *manager, server_t *serv,
 	return (chan);
 }
 
-int manager_channel_join_by_name(manager_t *manager,
-					const char *chanstr,
+int manager_channel_join_by_name(manager_t *manager, const char *chanstr,
 					handle_t *client)
 {
 	channel_t *chan = manager_channel_find(manager, chanstr);

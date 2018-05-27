@@ -23,7 +23,7 @@ int client_cmd_join(manager_t *manager, char *arg)
 		return (ret_int_client(RET_ERR, "Command join", "failed", ""));
 	}
 	if (strlen(str = list_iter_access(iterator))
-					&& (str[0] == '#' || str[0] == '&')) {
+		&& (str[0] == '#' || str[0] == '&')) {
 		client_cmd_part(manager, client->channel);
 		dprintf(client->fd, "%s %s\r\n", "JOIN", str);
 		strcpy(client->channel, str);

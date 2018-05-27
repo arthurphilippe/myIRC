@@ -83,4 +83,3 @@ Test(manager_client, multi_client)
 	cr_assert(!iter);
 	cr_assert_eq(manager->m_handles[1].h_type, H_FREE);
 }
-

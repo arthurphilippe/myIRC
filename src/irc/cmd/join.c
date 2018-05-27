@@ -54,8 +54,8 @@ static void irc_cmd_join_channel(manager_t *manager, handle_t *hdl, char *arg)
 	list_destroy(list);
 }
 
-static void irc_cmd_join_extract(manager_t *manager,
-				handle_t *hdl, list_t *arg)
+static void irc_cmd_join_extract(manager_t *manager, handle_t *hdl,
+					list_t *arg)
 {
 	list_iter_t *iter = list_iter_create(arg, FWD);
 	char *tmp = NULL;
